@@ -1,0 +1,321 @@
+﻿
+@using PagedList.Mvc;
+
+@{
+    //PagedList.IPagedList<奈班级学生管理系统.Models.Student> mypaggelist = (PagedList.IPagedList<奈班级学生管理系统.Models.Student>) ViewBag.stulist;
+
+    Layout = null;
+}
+@using 奈班级学生管理系统.Models
+@*@model  IEnumerable<奈班级学生管理系统.Models.Class>*@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    @*<link href="~/Content/css/index.css" rel="stylesheet" />*@
+
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+    @* //分页的样式*@
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    @*<link href="~/Content/css/pagedlistmvc.css" rel="stylesheet" />*@
+
+    <!--第一步：引入Javascript / CSS （CDN）-->
+    <style>
+        /*导入导出文字样式*/
+        .daochu {
+            text-decoration: none;
+            color: #337ab7;
+            border: 0px;
+            background-color: white;
+            font-size: 15px;
+        }
+
+        td {
+            font-size: 12px;
+            font-family: 正楷;
+            color: #000000A6;
+        }
+
+
+        @*班级按钮样式stare*@
+        .pagination > li > a, .pagination > li > span {
+            padding: 6px 3px;
+            border: 0px
+        }
+        .btn {
+            color: rgba(0,0,0,.65);
+        }
+            
+       
+       
+        .ant-tag-checkable:not(.ant-tag-checkable-checked):hover {
+            color: #97c8ff;
+        }
+
+        .ant-tag-checkable-checked, .ant-tag-checkable:active {
+            color: white;
+        }
+
+        .ant-tag-checkable-checked {
+            background-color: #97c8ff;
+        }
+        @*班级按钮样式end*@
+        .dataTables_info {
+            display: none;
+        }
+     
+       
+    </style>
+</head>
+<body>
+    <div>
+
+
+        <!--head-->
+        <!-- 模态框 -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- 模态框头部 -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">导入学生详情</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <!-- 模态框内容 -->
+                    <div class="modal-body">
+                        @using (Html.BeginForm("Import", "Tstudent", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <div class=" container text-align-center">
+                                <input name="file" type="file" id="=file" class="mystyle " />
+                            </div>
+                            <br />
+                            <br />
+                            <div class=" container text-align-center">
+                                <input name="submit" id="submit" type="submit" class="btn "  style="background-color: #97c8ff; color:white;" value="批量导入" />
+                            </div>
+                        }
+                    </div>
+
+                    <!-- 模态框底部 -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn " data-bs-dismiss="modal">关闭</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div style="height: 60px; line-height: 60px; padding: 0px 14px 0px 5px;">
+            <div style="padding-top:0px; padding-bottom:50px;">
+                <span style="font-size: 25px; font-weight: 600; position: relative; color: rgba(0,0,0,.65);">学生分析 </span>
+
+                <div style="float:right;margin-left:10px;">
+
+                    <span class="btn text-align-center">
+
+                        <button type="button" class="daochu" data-bs-toggle="modal" data-bs-target="#myModal">
+                            <img src="~/icons/daochu.png" style="width:20px; height:auto;" /> 导入学生详情
+                        </button>
+                        <button type="button" class="daochu">
+                            <img src="~/icons/daochu.png" style="width:20px; height:auto;" />@Html.ActionLink("导出学生详情", "ExportExcel", "Tstudent", new { @class = "daochu" })
+                        </button>
+
+                    </span>
+                </div>
+            </div>
+        </div>
+        <hr />
+        
+     
+        <div class="ant-card-body" style="padding: 5px 10px;">
+            <form>
+
+                <div class="tagSelect___1h9X3 expanded___350SQ">
+                    @* 遍历循环班级编号*@
+                    <a class="ant-tag ant-tag-checkable ant-tag-checkable-checked btn" style="text-decoration: none; margin-bottom: 6px; cursor: pointer;" href="/Tstudent/Index">全部班级</a>
+
+                    @foreach (var item in ViewBag.classlist)
+                    {
+                        <a class="ant-tag ant-tag-checkable btn" style="cursor: pointer; margin-right: 16px; margin-bottom: 6px;" href="/Tstudent/Index?id=@item.ClassID">@item.ClassName</a>
+
+
+                    }
+                </div>
+
+
+            </form>
+        </div>
+        <hr />
+        <div>
+            <table class="order-column " width="100%" id="example">
+                <thead>
+                    <tr>
+                        <th>
+                            姓名
+                        </th>
+                        <th>
+                           电话
+                        </th>
+                        <th>
+                           性别
+                        </th>
+                        <th>
+                           学号
+                        </th>
+                        <th>
+                            密码
+                        </th>
+                        <th>
+                            民族
+                        </th>
+                        <th>
+                            政治面貌
+                        </th>
+                        <th>
+                            职务
+                        </th>
+                        <th>
+                            专业
+                        </th>
+                        <th>
+                            招生类型
+                        </th>
+                        <th>
+                            宿舍
+                        </th>
+                        <th>
+                            家乡
+                        </th>
+                        <th style="display:none">
+                            班级编号
+                        </th>
+                        <th style="display:none">
+
+                            辅导员编号
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item1 in ViewBag.stulist)
+                    {
+                        <tr>
+                            <td>
+                                @item1.StudentName
+                            </td>
+                            <td>
+                                @item1.Tell
+                            </td>
+                            <td>
+                                @item1.Sex
+
+                            </td>
+                            <td>
+                                @item1.StudentNum
+
+                            </td>
+                            <td>
+                                @item1.StudentPwd
+
+                            </td>
+                            <td>
+                                @item1.Nation
+
+                            </td>
+                            <td>
+                                @item1.PoliticsStatus
+
+                            </td>
+                            <td>
+                                @item1.Position
+
+                            </td>
+                            <td>
+                                @item1.Major
+                                @*@Html.DisplayFor(modelItem => item.Major)*@
+                            </td>
+                            <td>
+                                @item1.RecruitType
+                                @*@Html.DisplayFor(modelItem => item.RecruitType)*@
+                            </td>
+                            <td>
+                                @item1.Dorm
+                                @*@Html.DisplayFor(modelItem => item.Dorm)*@
+                            </td>
+                            <td>
+                                @item1.Hometown
+                                @*@Html.DisplayFor(modelItem => item.Hometown)*@
+                            </td>
+                            <td style="display:none">
+
+                                @item1.Class.ClassName
+                                @*@Html.DisplayFor(modelItem => item.ClassID)*@
+                            </td>
+                            <td style="display:none">
+
+                                @item1.Teacher.TeacherName
+                                @*@Html.DisplayFor(modelItem => item.TeacherID)*@
+                            </td>
+
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+        </div>
+
+    </div>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+
+    <!--引入JavaScript-->
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/1.12.1/pagination/input.js"></script>
+
+    <!--初始化代码-->
+
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                "pagingType": "input",@*输入跳转指定页面*@
+                "lengthMenu": [[8,20, -1], [ 8,20,"全部"]],@*选中显示的页面条数*@
+                language: {
+                    "sProcessing": "处理中...",
+                    "sLengthMenu": "显示 _MENU_ 项结果",
+                    "sZeroRecords": "没有匹配结果",
+                    "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                    "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                    "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                    "sInfoPostFix": "",
+                    "sSearch": "搜索:",
+                    "sUrl": "",
+                    "sEmptyTable": "表中数据为空",
+                    "sLoadingRecords": "载入中...",
+                    "sInfoThousands": ",",
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": "上页",
+                        "sNext": "下页",
+                        "sLast": "末页"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": 以升序排列此列",
+                        "sSortDescending": ": 以降序排列此列"
+                    }
+                }
+
+                
+            });
+        });
+
+    </script>
+</body>
+</html>

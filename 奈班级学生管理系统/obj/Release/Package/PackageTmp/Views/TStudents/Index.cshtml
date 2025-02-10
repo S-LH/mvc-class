@@ -1,0 +1,306 @@
+﻿@model IEnumerable<奈班级学生管理系统.Models.Student>
+
+@using PagedList.Mvc;
+
+@{
+    PagedList.IPagedList<奈班级学生管理系统.Models.Student> mypaggelist = (PagedList.IPagedList<奈班级学生管理系统.Models.Student>)ViewBag.mypagelist;
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+       <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+    @* //分页的样式*@
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    <link href="~/Content/css/pagedlistmvc.css" rel="stylesheet" />
+    <!--第一步：引入Javascript / CSS （CDN）-->
+    <style>
+        /*导入导出文字样式*/
+        .daochu {
+            text-decoration: none;
+            color: #337ab7;
+            border: 0px;
+            background-color: white;
+            font-size: 15px;
+        }
+
+        td {
+            font-size: 8px;
+            font-family: 正楷;
+        }
+
+       
+        #myInput {
+            background-image: url('https://static.runoob.com/images/mix/searchicon.png'); /* 搜索按钮 */
+            background-position: 9px 4px; /* 定位搜索按钮 */
+            background-repeat: no-repeat; /* 不重复图片 */
+            width: 50%;
+            font-size: 16px;
+            padding: 3px 20px 4px 39px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        .pagination > li > a, .pagination > li > span {
+            padding: 6px 3px;
+            border: 0px
+        }
+    </style>
+</head>
+
+<body style="height:auto;">
+    @*<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>*@
+
+    <div style="padding-top:10px; padding-bottom:50px;">
+        <div style="float:right;margin-left:10px;">
+            <span class="btn text-align-center">
+
+                <button type="button" class="daochu" data-bs-toggle="modal" data-bs-target="#myModal">
+                    <img src="~/icons/daochu.png" style="width:20px; height:auto;" /> 导入学生详情
+                </button>
+                <button type="button" class="daochu">
+                    <img src="~/icons/daochu.png" style="width:20px; height:auto;" />@Html.ActionLink("导出学生详情", "ExportExcel", "TStudents", new { @class = "daochu" })
+                </button>
+
+            </span>
+        </div>
+    </div>
+
+    <!--head-->
+    <!-- 模态框 -->
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- 模态框头部 -->
+                <div class="modal-header">
+                    <h4 class="modal-title">导入学生详情</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- 模态框内容 -->
+                <div class="modal-body">
+                    @using (Html.BeginForm("Import", "TStudents", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class=" container text-align-center">
+                            <input name="file" type="file" id="=file" class="mystyle " />
+                        </div>
+                        <br />
+                        <br />
+                        <div class=" container text-align-center">
+                            <input name="submit" id="submit" type="submit" class="btn btn-success" value="批量导入" />
+                        </div>
+                    }
+                </div>
+
+                <!-- 模态框底部 -->
+                <div class="modal-footer">
+                    <button type="button" class="btn " data-bs-dismiss="modal">关闭</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="table-responsive-sm">
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="搜索...">
+        <table class="table table-bordered " id="myTable ">
+            <tr>
+                <th onclick="sortTable(0)">
+                    学生姓名
+                </th>
+                <th>
+                    学生电话
+                </th>
+                <th>
+                    学生性别
+                </th>
+                <th>
+                    学生学号
+                </th>
+                <th>
+                    密码
+                </th>
+                <th>
+                    民族
+                </th>
+                <th>
+                    政治面貌
+                </th>
+                <th>
+                    职务
+                </th>
+                <th>
+                    专业
+                </th>
+                <th>
+                    招生类型
+                </th>
+                <th>
+                    宿舍
+                </th>
+                <th>
+                    家乡
+                </th>
+                <th style="display:none">
+                    班级编号
+                </th>
+                <th style="display:none">
+                    辅导员编号
+                </th>
+
+            </tr>
+
+            @foreach (var item in mypaggelist)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StudentName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tell)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sex)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StudentNum)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StudentPwd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PoliticsStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Position)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Major)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RecruitType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Dorm)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hometown)
+                    </td>
+                    <td style="display:none">
+                        @Html.DisplayFor(modelItem => item.ClassID)
+                    </td>
+                    <td style="display:none">
+                        @Html.DisplayFor(modelItem => item.TeacherID)
+                    </td>
+                    @*<td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.StudentID }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.StudentID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.StudentID })
+
+
+                        </td>*@
+                    @* <td class="btn-group-sm">
+                            <a class="btn" style="background-color: #6dd9c3; color:white;" href="~/TStudents/Edit?id=@item.StudentID">修改</a>
+                            <a class="btn" style="background-color: #f59da6; color: white; " href="/TStudents/Delete?id=@item.StudentID">移除</a>
+                        </td>*@
+                    @*<a href="#" class="btn" id="triggerBtnxg">  <img src="~/icons/daochu.png" style="width:20px; height:auto;" />修改</a>*@
+
+                    @*   @Html.ActionLink("查看详情", "Details", new { id = item.CourseID }, new { @class = "btn btn-danger" }) *@
+
+                </tr>
+            }
+
+        </table>
+        @*每页 @mypaggelist.PageSize 条记录,共 @mypaggelist.PageCount 页，当前 @mypaggelist.PageNumber 页*@
+        @Html.PagedListPager(mypaggelist, Page => Url.Action("Index", new { Page }))
+    </div>
+    <script>
+        function myFunction() {
+            // 声明变量
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+
+            // 循环表格每一行，查找匹配项
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function sortTable(n) {
+            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("myTable");
+            switching = true;
+            // 设置升序排列
+            dir = "asc";
+            /* 设置一个循环语句 */
+            while (switching) {
+                // 设置循环结束标记
+                switching = false;
+                rows = table.rows;
+                /* 循环列表，从第二行开始 */
+                for (i = 1; i < (rows.length - 1); i++) {
+                    // 设置元素是否调换位置
+                    shouldSwitch = false;
+                    /* 获取要比较的元素,
+                    one from current row and one from the next: */
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+                    /* 判断是否将下一个元素与当前元素进行切换 (asc 或 desc):  */
+                    if (dir == "asc") {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            // 设置调换元素标记，并结束当前循环
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (dir == "desc") {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            // 设置调换元素标记，并结束当前循环
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    /* 如果元素调换位置设置为 true，则进行对调操作 */
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    // 每次对调完成时，将 switchcount 增加 1
+                    switchcount++;
+                } else {
+                    /* 如果完成所有元素的排序且 direction 设置为 "asc",这时就将 direction 设置为 "desc" 并再次执行循环 */
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
+
+
+    </script>
+    
+
+
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta charset="utf-8" />
+
+    <style type="text/css">
+        .hightCss {
+            color: yellow;
+        }
+
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        i {
+            color: black;
+        }
+    </style>
+    <link href="~/jsCSSImg/Content/sharestyle.css" rel="stylesheet" />
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
+
+    <script src="~/jsCSSImg/Scripts/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+        //控制Left视图中菜单模块的显示
+        function showLeftList(divId) {
+            self.parent.frames["leftFrame"].showDivMenu(divId);
+        }        //菜单点击高亮显示
+        $(function () {
+            $(".nav_list ul li a").click(function () {
+                //$(".nav_list ul li a").css("color", "#ceebff");
+                //$(this).css("color", "yellow");
+                $(".nav_list ul li a").css("background-color", "");
+                $(".nav_list ul li a").css("color", "#ceebff");
+                $(this).css("background-color", "#66d354");
+                $(this).css("color", "white");
+            });
+        });
+    </script>
+</head>
+<body>
+    <div style="height:100px;">
+
+        <a href="#">
+            <img src="~/jsCSSImg/Images/奈班级3.jpg" style="width:230px;height:auto;" />
+        </a>
+
+        <div class="fucnbx">
+            <iframe width="160" height="100" frameborder="0" scrolling="no" hspace="0" src="https://i.tianqi.com/?c=code&a=getcode&id=81&icon=1">
+            </iframe>
+           
+          @*  <a href="/Teacher/Login" title="安全退出" target="_top" style="float:right" height="100"> <span>安全退出</span></a>*@
+
+            @* 子页面中点击链接标签跳转页面时只跳当前子页面，没有整个页面实现跳转。
+        给链接标签加了 target="_top" 属性就好，这样就可以实现整个页面跳转了
+            *@
+        </div>
+       
+    </div>
+
+</body>
+</html>
+

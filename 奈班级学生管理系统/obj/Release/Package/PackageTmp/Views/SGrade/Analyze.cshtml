@@ -1,0 +1,223 @@
+﻿
+@{
+    ViewBag.Title = "Analyze";
+    Layout = "~/Views/Shared/Grade.cshtml";
+}
+
+
+@* 男女生人数柱状图 *@
+<div id="main" style="width: 1000px; height:500px"></div>
+
+@* 男女生人数饼状图 *@
+<div id="Pie" style="width: 1000px; height:400px"></div>
+
+@section scripts{
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/SJs/echarts.min.js"></script>
+    <script src="~/SJs/china.js"></script>
+    <script type="text/javascript">
+        //男女生人数比例柱状图
+        $(function () {
+            Bar();
+        });
+        var names = [];	//定义数组，数组可自由定义
+        var scores = [];
+        function Bar() {
+            $.ajax({
+                url: "/SGrade/GetEchartsIndex",
+                type: "post",
+                async: false,
+                dataType: "json",
+                success: function (result) {
+                    //根据自己的希求以及熟练程度选择for循环或者$.each循环方法
+                    //for循环遍历所需的数据
+                    for (var i = 0; i < result.Num.length; i++) {
+                        scores[i] = JSON.parse(result.Num[i]);//以特定的JSON的格式接收数字
+                    }
+                    for (var i = 0; i < result.Sex.length; i++) {
+                        names[i] = result.Sex[i];//以JSON的方式接收字符串
+                    }
+                    //$.each方法遍历所需的数据
+                    $.each(result.data, function (index, item) {
+                        names.push(item.Name);//通过三目元算符将Bool值“true”或“false”转换成男或女
+                        scores.push(item.ID)
+                    });
+                    //调用柱状图方法
+                    InitChart(names, scores);
+                },
+                error: function (error) {
+                    alert("Ajax获取服务器数据出错了！" + error);
+                }
+            });
+        }
+        //创建一个方法来封装柱状图
+        function InitChart(names, scores) {
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main'));//初始化echarts
+            option = {
+                title: {
+                    text: '各科分数',//可视化主标题
+                    textStyle: {//主标题的样式
+                        color: 'red',
+                        fontWeight: 'bold',
+                        fontStyle: 'italic',
+                        fontFamily: '微软雅黑'
+                    },
+                    subtext: '各科分数对比',//副标题
+                    subtextStyle: {//副标题的样式
+                        color: 'black',
+                        fontFamily: '微软雅黑'
+
+                    },
+                    x: 'center'
+                },
+                grid: {
+                    top: '20%',
+                },
+                xAxis: {
+
+                    name: '科目',
+                    type: 'category',
+                    data: names,
+                    axisLabel: {
+                        rotate: '35',
+                        interval: 0
+                    },
+                },
+                //提示框组件
+                tooltip: {
+                    trigger: 'axis',//触发类型；item:数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用；axis：坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用
+                },
+                //工具组件：如：下载保存统计图表、切换为折线图、切换为柱状图
+                toolbox: {
+                    feature: {
+                        magicType: { show: true, type: ['line', 'bar'] },
+                        restore: { show: true },
+                        saveAsImage: { show: true }
+                    }
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '分数',
+                },
+                series: [{
+                    data: scores,
+                    type: 'bar',//图形类型
+                    color: [
+
+                        '#82CAFF'
+                    ],
+                    label: {
+                        normal: {
+                            formatter: "{c}" + "分",//数据格式化
+                            show: true,
+                            position: 'top',//数据显示的位置，事例中显示在顶部
+                            textStyle: {//显示的数据样式
+                                color: 'black',
+                                fontFamily: '微软雅黑'
+                            }
+                        }
+                    },
+                }]
+            };
+            // 使用刚指定的配置项和数据显示图表-绑定数据
+            myChart.setOption(option);
+        }
+
+        //男女生人数比例饼状图
+        $(function () {
+            Pie();
+        });
+        var Sex = [];	//定义数组
+        var Info = [];
+        function Pie() {
+            $.ajax({
+                url: "/SGrade/GetEchartsPie",
+                type: "post",
+                async: false,
+                dataType: "json",
+                success: function (result) {
+                    //for循环遍历所需的数据
+                    for (var i = 0; i < result.Num.length; i++) {
+                        Info[i] = { value: result.Num[i], name: result.Sex[i] };
+                    }
+                    for (var i = 0; i < result.Sex.length; i++) {
+                        Sex[i] = result.Sex[i];//以JSON的方式接收字符串
+                    }
+                    //调用饼状图方法
+                    InitPie(Sex, Info);
+                },
+                error: function (error) {
+                    /*  alert("Ajax获取服务器数据出错了！" + error);*/
+                }
+            });
+        }
+        //创建一个方法来封装饼状图
+        function InitPie(Sex, Info) {
+            //获取页面div的id属性
+            // 基于准备好的dom，初始化echarts实例
+            var myChartPie = echarts.init(document.getElementById('Pie'));
+            option_Pie = {
+                title: {
+                    text: '各科分数',	//可视化主标题
+                    textStyle: {
+                        color: 'red',
+                        fontWeight: 'bold',
+                        fontStyle: 'italic',
+                        fontFamily: '微软雅黑'
+                    },	//主标题的样式
+                    subtext: '各科分数',	//副标题
+                    subtextStyle: {
+                        color: 'black',
+                        fontFamily: '微软雅黑'
+                    },	//副标题的样式
+                    x: 'center'
+                },
+                //图例
+                legend: {
+                    data: Sex,
+                    orient: 'vertical',	//图例列表的布局朝向，取值：'vertical'/'horizontal'
+                    left: '10%',
+                },
+                //提示框组件
+                tooltip: {
+                    trigger: 'item',	//触发类型；item:数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用；axis：坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用
+                    formatter: "{a}<br/>{b} ：{c}分 ({d}%)"
+                },
+                //工具组件：如：下载保存统计图表、切换为折线图、切换为柱状图
+                toolbox: {
+                    feature: {
+                        saveAsImage: { show: true }
+                    }
+                },
+                label: {
+                    show: true,
+                },
+                series: [{
+                    name: '分数',
+                    radius: '50%',// 设置环形饼状图， 第一个百分数设置内圈大小，第二个百分数设置外圈大小
+                    center: ['50%', '55%'], // 设置饼状图位置，第一个百分数调水平位置，第二个百分数调垂直位置
+                    data: Info,
+                    type: 'pie',
+                    color: [
+                        '#37A2DA',
+                        '#32C5E9',
+                        '#67E0E3',
+                        '#9FE6B8',
+                        '#FFDB5C',
+                        '#ff9f7f',
+                        '#fb7293',
+                        '#E062AE',
+                        '#E690D1',
+                        '#e7bcf3',
+                        '#9d96f5',
+                        '#8378EA',
+                        '#96BFFF'
+                    ],
+                }]
+            };
+            // 使用刚指定的配置项和数据显示图表-绑定数据
+            myChartPie.setOption(option_Pie);
+        }
+    </script>
+}

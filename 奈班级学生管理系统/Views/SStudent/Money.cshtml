@@ -1,0 +1,82 @@
+﻿
+@{
+    Layout = null;
+}
+@using 奈班级学生管理系统.Models
+@model  List<奈班级学生管理系统.Models.PayTable>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <title>Money</title>
+</head>
+<body>
+    <div>
+        <div style="height: 60px; line-height: 60px; padding: 0px 14px 0px 5px;">
+            <div style="padding-top:0px; padding-bottom:50px;">
+                <span style="font-size: 25px; font-weight: 600; position: relative; color: rgba(0,0,0,.65);">发起缴费 </span>
+
+            </div>
+        </div>
+        <hr />
+
+        @if (ViewBag.posit == "生活委员")
+        {
+            <table class="table table-bordered">
+                <tr>
+                    <th>姓名</th>
+                    <th>缴费类型</th>
+                    <th>缴费金额</th>
+                    <th>状态</th>
+                    <th>时间</th>
+                    <th>操作</th>
+                </tr>
+
+                @foreach (var item in ViewBag.PayList)
+                {
+                    <tr>
+                        <td>@item.position  @item.stuname</td>
+                        <td> @item.stely</td>
+                        <td>@item.money</td>
+                        <td>@item.state</td>
+                        <td>@item.time</td>
+                        <td><a href="App?id=@item.payid" target="_top">支付</a></td>
+
+                    </tr>
+
+                }
+            </table>
+
+        }
+        else
+        {
+            <table class="table table-bordered">
+                <tr>
+                    <th>姓名</th>
+                    <th>缴费类型</th>
+                    <th>缴费金额</th>
+                    <th>状态</th>
+                    <th>时间</th>
+                </tr>
+
+                @foreach (var item in ViewBag.PayList)
+                {
+                    <tr>
+                        <td>@item.position  @item.stuname</td>
+                        <td> @item.stely</td>
+                        <td>@item.money</td>
+                        <td>@item.state</td>
+                        <td>@item.time</td>
+
+
+                    </tr>
+
+                }
+            </table>
+
+        }
+    </div>
+</body>
+</html>

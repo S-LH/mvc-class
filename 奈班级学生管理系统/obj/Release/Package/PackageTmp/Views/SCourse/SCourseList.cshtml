@@ -1,0 +1,62 @@
+﻿
+<link href="~/DataTables-1.10.21/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/DataTables-1.10.21/jquery.dataTables.min.js"></script>
+
+<script>
+
+
+        $(document).ready(function () {
+            $('#table_id').DataTable({
+                "searching": false, //去掉搜索框方法一
+                "oLanguage": {
+                    "sLengthMenu": "每页显示 _MENU_条",
+                    "sZeroRecords": "没有找到符合条件的数据",
+                    "sProcessing": "&lt;img src=’./loading.gif’ /&gt;",
+                    "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
+                    "sInfoEmpty": "木有记录",
+                    "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
+                    "sSearch": "搜索：",
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": "前一页",
+                        "sNext": "后一页",
+                        "sLast": "尾页",
+
+                    }
+                },
+                "pageLength": 6,
+                "lengthMenu": [6, 12]
+
+            });
+
+
+        });
+
+
+</script>
+<table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>课程编号</th>
+            <th>课程名称</th>
+            <th>学分</th>
+            <th>开课时间</th>
+            <th>任课老师</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in ViewBag.SCourseList as List<奈班级学生管理系统.Models.Course>)
+        {
+
+            <tr>
+                <td>@item.CourseID</td>
+                <td>@item.CourseName</td>
+                <td>@item.Credit</td>
+                <td>@item.CreditTime</td>
+                <td>@item.Rteacher</td>
+            </tr>
+
+        }
+    </tbody>
+</table>

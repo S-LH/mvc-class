@@ -1,0 +1,259 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Sturz</title>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/jsCSSImg/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+    @* //分页的样式*@
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    <style>
+        td {
+            font-size: 12px;
+            font-family: 正楷;
+            color: #000000A6;
+        }
+
+
+        @*班级按钮样式stare*@ .pagination > li > a, .pagination > li > span {
+            padding: 6px 3px;
+            border: 0px
+        }
+
+        .btn {
+            color: rgba(0,0,0,.65);
+        }
+
+
+
+        .ant-tag-checkable:not(.ant-tag-checkable-checked):hover {
+            color: #97c8ff;
+        }
+
+        .ant-tag-checkable-checked, .ant-tag-checkable:active {
+            color: white;
+        }
+
+        .ant-tag-checkable-checked {
+            background-color: #97c8ff;
+        }
+
+        @*班级按钮样式end*@ .dataTables_info {
+            display: none;
+        }
+                      a{
+                          text-decoration:none;
+                      }
+    </style>
+</head>
+<body>
+    <!-- 模态框 -->
+    
+
+                    <!--head-->
+                    <!-- 模态框 -->
+
+
+                    <div style="height: 60px; line-height: 60px; padding: 0px 14px 0px 5px;">
+                        <div style="padding-top:0px; padding-bottom:50px;">
+                            <span style="font-size: 25px; font-weight: 600; position: relative; color: rgba(0,0,0,.65);">学生管理 </span>
+
+
+                        </div>
+                    </div>
+                    <hr />
+
+
+                    <div class="ant-card-body" style="padding: 5px 10px;">
+                        <form>
+
+                            <div class="tagSelect___1h9X3 expanded___350SQ">
+                                @* 遍历循环班级编号*@
+                                <a class="ant-tag ant-tag-checkable ant-tag-checkable-checked btn" style="text-decoration: none; margin-bottom: 6px; cursor: pointer;" href="/Tstudent/Sturz">全部班级</a>
+
+                                @foreach (var item in ViewBag.classlist)
+                                {
+                                    <a class="ant-tag ant-tag-checkable btn" style="cursor: pointer; margin-right: 16px; margin-bottom: 6px;" href="/Tstudent/Sturz?id=@item.ClassID">@item.ClassName</a>
+
+
+                                }
+                            </div>
+
+
+                        </form>
+                    </div>
+                    <hr />
+                    <div is="stu">
+                        <table class="order-column " width="100%" id="example">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        姓名
+                                    </th>
+                                    <th>
+                                        性别
+                                    </th>
+                                    <th>学号</th>
+
+                                    <th>
+                                        职务
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item1 in ViewBag.stulist as List<奈班级学生管理系统.Models.Student>)
+                                {
+                                    <tr>
+                                        <td>
+                                            @item1.StudentName
+                                        </td>
+
+                                        <td>
+                                            @item1.Sex
+                                        </td>
+
+                                        <td>@item1.StudentNum</td>
+
+                                        <td>
+                                            <a href="Sturz?id=@item1.StudentID" data-bs-toggle="modal" data-bs-target="#myModal" onclick="Open(@item1.StudentID)">  @item1.Position</a>
+
+                                            @*@Html.DisplayFor(modelItem => item.Hometown)*@
+                                        </td>
+
+                                        @* <td>
+                            <a href="/Tstudent/del?stuid=@item1.StudentID" onclick="return confirm('是否确定删除')">删除</a>
+
+                            <button type="button" style="border:0px; background-color:white;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+
+                                <a href="#offcanvasRight?stuid=@item1.StudentID">修改</a>
+
+                            </button>
+                        </td>*@
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div class="modal fade" id="myModal">
+                            <div class="modal-dialog modal-dialog-scrollable modal-sm"  style="padding-top:30px;">
+                                <div class="modal-content" style="width:350px">
+
+                                    <!-- 模态框头部 -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">班委任命</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+
+                                    <!-- 模态框内容 -->
+                                    <form id="postForm" action="/Tstudent/EditPost" method="post">
+                                        <div class="modal-body row">
+                                            <input name="StudentID" style="display:none" class="StuID" />
+                                            <p><input type="radio" name="Position" value="纪律委员" />&nbsp;纪律委员&nbsp;&nbsp;&nbsp;<input type="radio" name="Position" value="班长" />&nbsp;班长&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Position" value="副班长" />&nbsp;副班长</p>
+                                            <p><input type="radio" name="Position" value="生活委员" />&nbsp;生活委员&nbsp;&nbsp;&nbsp;<input type="radio" name="Position" value="体育委员" />&nbsp;体育委员&nbsp;&nbsp;&nbsp;<input type="radio" name="Position" value="学习委员" />&nbsp;学习委员</p>
+                                            <p><input type="radio" name="Position" value="团支书" />&nbsp;团支书&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Position" value="宣传委员" />&nbsp;宣传委员&nbsp;&nbsp;&nbsp;<input type="radio" name="Position" value="文艺委员" />&nbsp;文艺委员</p>
+                                            <p><input type="radio" name="Position" value="组织委员" />&nbsp;组织委员&nbsp;&nbsp;&nbsp;<input type="radio" name="Position" value="生活委员" />&nbsp;生活委员&nbsp;&nbsp;&nbsp;<input type="radio" name="Position" value="(暂无)" />&nbsp;(暂无)</p>
+                                            <p><input type="radio" name="Position" value="秘书长" />&nbsp;秘书长</p>
+
+                                        </div>
+
+                                        <!-- 模态框底部 -->
+                                        <div class="modal-footer">
+                                            @*<button type="button" class="btn " style="color: white; background-color: #97c8ff;" data-bs-dismiss="modal">确定</button>*@
+                                            <input type="submit" class="btn " style="color: white; background-color: #97c8ff;" data-bs-dismiss="modal" value="确定"/>
+                                            <button type="button" class="btn " style="color: white; background-color: #97c8ff;" data-bs-dismiss="modal">关闭</button>
+                                        </div>
+                                    </form>
+                                    
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+
+                        <!--引入JavaScript-->
+                        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+                        <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/1.12.1/pagination/input.js"></script>
+
+                        <!--初始化代码-->
+
+                        <script>
+
+                            function Open(dataS) {
+                                $.ajax({
+                                    url: "/Tstudent/GetStudent?id=" + dataS,
+                                    type: "get",
+                                    success: data => {
+                                        var StuInfo = JSON.parse(data)
+                                        //$(".StuID").val(StuInfo.StudentID)
+                                        //$(".Name").val(StuInfo.Name)
+                                        //$(".Num").val(StuInfo.Num)
+                                        //$(".Tel").val(StuInfo.Tel)
+                                        //$(".Sex").val(StuInfo.Sex)
+                                        //$(".Drom").val(StuInfo.Drom)
+                                        //$(".Home").val(StuInfo.Home)
+                                        $("input[name='Position']").each(function (index, element) {
+                                            //判断当前按钮的值与input的值是否一致，一致则赋值
+                                            $(".StuID").val(StuInfo.StudentID)
+                                            if ($(this).val() == StuInfo.Post) {
+
+                                                $(this).prop("checked", true);
+
+                                            } else {
+                                                $(this).prop("checked", false);
+                                            }
+
+                                        });
+                                        },
+                                            error: error => {
+                                                console.log(error)
+                                            }
+                                })
+                            }
+        $(document).ready(function () {
+            $('#example').DataTable({
+                "pagingType": "input",@*输入跳转指定页面*@
+                "lengthMenu": [[8,20, -1], [ 8,20,"全部"]],@*选中显示的页面条数*@
+                language: {
+                    "sProcessing": "处理中...",
+                    "sLengthMenu": "显示 _MENU_ 项结果",
+                    "sZeroRecords": "没有匹配结果",
+                    "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                    "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                    "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                    "sInfoPostFix": "",
+                    "sSearch": "搜索:",
+                    "sUrl": "",
+                    "sEmptyTable": "表中数据为空",
+                    "sLoadingRecords": "载入中...",
+                    "sInfoThousands": ",",
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": "上页",
+                        "sNext": "下页",
+                        "sLast": "末页"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": 以升序排列此列",
+                        "sSortDescending": ": 以降序排列此列"
+                    }
+                }
+
+              
+            });
+        });
+
+                        </script>
+
+</body>
+</html>

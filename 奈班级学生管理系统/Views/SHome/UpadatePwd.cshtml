@@ -1,0 +1,215 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="shortcut icon" href="~/jsCSSImg/Images/奈班级图标.ico">
+    <link href="~/SCss/layui.css" rel="stylesheet" />
+    <link href="~/SCss/link.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .rebinding-box .twobox-form .twoform-input2 input {
+            width: 100%;
+        }
+
+        #btn {
+            margin-left: 150px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="rebinding-box">
+        <div class="box-title">
+            <h2 class="mtb5">填写新密码</h2>
+            <i>为了保障您的帐户安全，请先进行安全验证</i>
+        </div>
+        <div class="box-timeline">
+            <ul class="text-center" style="width: 800px;">
+                <li>
+                    填写登录密码
+                    <div class="box-num1">
+                        1
+                    </div>
+                </li>
+                <li class="ml45">
+                    确认新密码
+                    <div class="box-outside1 outside1ab" id="outside1abs">
+                        <div class="box-num2 num2ab">
+                            2
+                        </div>
+                    </div>
+                </li>
+                <li class="ml45">
+                    完成
+                    <div class="box-outside2 outside2a" id="outside2as">
+                        <div class="box-num3 num3a">
+                            3
+                        </div>
+                    </div>
+                </li>
+                <div class="clear">
+
+                </div>
+            </ul>
+
+
+        </div>
+        <!--第一步-->
+        <div class="onebox-form" id="oneform">
+            <form>
+                <div class="oneform">
+                    <div class="oneform-box">
+                        <label class="oneform-label">登录密码</label>
+                        <div class="oneform-input">
+                            <input type="password" id="pasval" autocomplete="off" placeholder="请填写登录密码，认证帐号" onblur="fun()">
+                            <span id="pwdmsg" style="color:red"></span>
+                        </div>
+                    </div>
+                    <div class="onebtn-box">
+                        <button class="onebtn" id="onebtn" onclick="fun()">下一步</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!--第二步-->
+        <div class="twobox-form" id="twoform">
+            <form class="twoform" method="post" action="/SHome/UpadatePwd">
+                <div class="twoform-box">
+                    <div class="newtel">
+                        <label class="twoform-label">新密码</label>
+                        <div class="twoform-input">
+                            <input type="password" id="ntel" name="StudentNPwd" autocomplete="off" placeholder="请输入新密码" onblur="fun2()">
+                            <span id="newpwdmsg" style="color:red"></span>
+                        </div>
+                    </div>
+                    <div class="validatecode">
+                        <label class="twoform-label2">确认密码</label>
+                        <div class="twoform-input2">
+
+                            <input type="password" autocomplete="off" placeholder="请输入确认密码" id="qpwd">
+                            <span id="qpwdmsg" style="color:red"></span>
+                        </div>
+                        @*<button class="sendcode" disabled="disabled">发送验证码</button>*@
+                    </div>
+                </div>
+                <div class="twobtn-box">
+
+                    <input type="button" id="twobtn" onclick="return fun2();" value="下一步" class="twobtn" />
+                </div>
+            </form>
+
+        </div>
+        <!--第三步-->
+        <div class="threebox-form" id="threeform">
+            <div class="successr">
+                <div class="symbol">
+
+                </div>
+                <p>恭喜您，修改密码成功！</p>
+                @*<button class="confirm">确认</button>*@
+                <a href="/SHome/Index" class="btn btn-info" id="btn">确认</a>
+            </div>
+        </div>
+    </div>
+    <script src="~/SJs/jquery-1.8.3.min.js"></script>
+    <script src="~/SJs/layui.js"></script>
+    <script type="text/javascript">
+        var onebtns = document.getElementById("onebtn");
+        var twobtns = document.getElementById("twobtn");
+        var soutside1ab = document.getElementById("outside1abs");
+        var soutside2as = document.getElementById("outside2as");
+        var oneforms = document.getElementById("oneform");
+        var twoforms = document.getElementById("twoform");
+        var threeforms = document.getElementById("threeform");
+
+        function fun() {
+            var pasvals = document.getElementById("pasval").value;
+            isPasswd(pasvals);
+            function isPasswd(s) {
+
+                if (pasvals == "") {
+
+                    document.getElementById("pwdmsg").innerText = "密码不能为空！"
+                    document.getElementById("pasval").onfocus();
+                    return false
+                }
+                else {
+
+                    $.ajax({
+                        type: "post",
+                        url: "/SHome/EditPassword",
+                        data: { "StudentPwd": $("#pasval").val() },
+                        async: false,
+                        success: function (res) {
+                            console.log(res)
+
+                            if (res == 0) {
+                                document.getElementById("pwdmsg").innerText = ""
+                                soutside1ab.classList.remove("outside1ab");
+                                oneforms.style.display = "none";
+                                twoforms.style.display = "block";
+                                return true
+                            } else {
+                                document.getElementById("pwdmsg").innerText = "密码输入错误";
+                            }
+
+                        }
+
+
+                    });
+                }
+            }
+        }
+
+
+        function fun2() {
+
+            var npwd = $.trim(document.getElementById("ntel").value);
+            var qpwd = $.trim(document.getElementById("qpwd").value);
+            var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,}$/;
+            if (npwd == "") {
+                document.getElementById("newpwdmsg").innerText = "新密码不能为空！"
+                document.getElementById("npwd").onfocus();
+                return false;
+            } else if (!reg.test(npwd)) {
+                document.getElementById("newpwdmsg").innerText = "密码至少8位，要求必须字母、数字加英文符号！"
+                document.getElementById("npwd").onfocus();
+                return false;
+            }
+            else if (qpwd != npwd) {
+                document.getElementById("newpwdmsg").innerText = "";
+                document.getElementById("qpwdmsg").innerText = "两次密码不一致！"
+                document.getElementById("qpwd").onfocus();
+                return false;
+            }
+            else {
+
+                document.getElementById("qpwdmsg").innerText = "";
+                $.ajax({
+                    type: "post",
+                    url: "/SHome/UpadatePwd",
+                    data: { "StudentNPwd": $("#ntel").val() },
+                    success: function (res) {
+                        /* alert(res);*/
+                        threeforms.style.display = "block";
+                        twoforms.style.display = "none";
+                        soutside2as.classList.remove("outside2a");
+                    }
+                });
+            }
+            return false;
+        }
+    </script>
+</body>
+
+</html>
+

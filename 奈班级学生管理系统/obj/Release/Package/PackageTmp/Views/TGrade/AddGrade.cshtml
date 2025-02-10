@@ -1,0 +1,331 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddGrade</title>
+
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/SJs/bootstrap.min.js"></script>
+    <link href="~/DataTables-1.10.21/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="~/DataTables-1.10.21/jquery.dataTables.min.js"></script>
+
+    <style>
+        .stuList {
+            margin-top: 20px;
+        }
+
+        .course {
+            margin-top: 20px;
+        }
+
+        td {
+            font-size: 12px;
+            font-family: 正楷;
+            color: #000000A6;
+        }
+
+  
+        @*班级按钮样式stare*@ .pagination > li > a, .pagination > li > span {
+            padding: 6px 3px;
+            border: 0px
+        }
+
+        .btn {
+            color: rgba(0,0,0,.65);
+        }
+
+
+
+        .ant-tag-checkable:not(.ant-tag-checkable-checked):hover {
+            color: #97c8ff;
+        }
+
+        .ant-tag-checkable-checked, .ant-tag-checkable:active {
+            color: white;
+        }
+
+        .ant-tag-checkable-checked {
+            background-color: #97c8ff;
+        }
+
+        @*班级按钮样式end*@ .dataTables_info {
+            display: none;
+        }
+        /*右侧导航栏宽度*/
+        @* .offcanvas-end {
+            width: 70%;
+        }
+
+        *@
+        a {
+            color: #337ab7;
+            text-decoration: none;
+        }
+
+        .hh {
+            border: 1px solid #d9d9d9;
+            border-radius: 4px;
+        }
+
+        span {
+            color: #000000D6;
+        }
+
+        p {
+            width: 80%;
+        }
+
+        body {
+            height: 100%
+        }
+
+        .xg {
+            padding-left: 50px;
+        }
+    </style>
+
+</head>
+<body>
+    @using 奈班级学生管理系统.Models;
+    <div class="container">
+        <h2>单科成绩添加</h2>
+        <hr />
+        <div class="class">
+            <p>选择班级：</p>
+
+
+            <div class="tagSelect___1h9X3 expanded___350SQ">
+                @* 遍历循环班级编号*@
+                <a class="ant-tag ant-tag-checkable ant-tag-checkable-checked btn" style="text-decoration: none; margin-bottom: 6px; cursor: pointer;" href="/TGrade/AddGrade">全部班级</a>
+
+                @foreach (var item in ViewBag.classlist)
+                {
+                    <a class="ant-tag ant-tag-checkable btn" style="cursor: pointer; margin-right: 16px; margin-bottom: 6px;" href="/TGrade/AddGrade?id=@item.ClassID">@item.ClassName</a>
+
+
+                }
+            </div>
+        </div>
+        <form id="form">
+            <div class="course">
+                <p>选择课程:</p>
+
+                <select name="CourseID" class="form-control" id="CourseID">
+                    <option value="">请选择课程</option>
+                    @foreach (var item1 in ViewBag.courselist as List<Course>)
+                    {
+                        <option value="@item1.CourseID">@item1.CourseName</option>
+                    }
+                </select>
+
+            </div>
+            <div class="stuList">
+                <table class="order-column " width="100%" id="example">
+                    <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>学生学号</th>
+                            <th>学生姓名</th>
+                            <th>学生分数</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item2 in ViewBag.stulist as List<Student>)
+                        {
+                            <tr>
+                                <td>@item2.StudentID</td>
+                                <td>@item2.StudentNum</td>
+                                <td>@item2.StudentName</td>
+
+                                <td><input type="text" class="form-control" name="Score" style="width:100px" id="Score" /><span style="color:red" id="msg"></span></td>
+                                <td>
+                                    <input type="text" class="form-control" name="StudentID" value="@item2.StudentID" style="display:none" id="StudentID" />
+                                    @*@//这里查当前学生是否存在成绩*@
+
+                                    @using (NaiClassEntities1 db = new NaiClassEntities1())
+                                    {
+                                        int id = item2.StudentID;
+                                        ViewBag.stu = db.Grade.Where(s => s.StudentID == id).ToList();
+
+                                    }
+
+                                    @if (ViewBag.stu.Count == 0)
+                                    {
+
+                                        <input type="button" value="保存" class="btn btn-success" id="save" onclick="saveBtn(this)" />
+                                    }
+                                    else
+                                    {
+                                        <input type="button" value="已保存" class="btn btn-success" id="save" disabled="disabled" />
+                                    }
+                                    <p style="display:none"> @ViewBag.stu.Count</p>
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <script>
+                    function saveBtn(val) {
+                        let id = $(val).parent().parent().find("td")[0].innerHTML;
+                        console.log(id)
+                        let cid = document.getElementById("CourseID").value;
+                        console.log(cid)
+                        var sco = $(val).parent().parent().find("td")[3];
+                        sco = sco.children[0].value
+                        console.log(sco)
+                        var reg = /^((?!0)\d{1,2}|100)$/;
+                        if (sco == "") {
+                            document.getElementById("msg").innerText = "成绩不能为空！"
+                            //document.getElementById("Score").onfocus();
+                            return false;
+                        } else if (!reg.test(sco)) {
+                            document.getElementById("msg").innerText = "成绩格式不正确！"
+                            //document.getElementById("Score").onfocus();
+                            return false;
+                        }
+                        else {
+                            document.getElementById("msg").innerText = ""
+                            $.ajax({
+                                type: "post",
+                                url: "/TGrade/AddGrade",
+                                data: { "Score": sco, "CourseID": cid, "StudentID": id },
+                                success: function (res) {
+                                    console.log(res)
+                                    var save = $(val).parent().parent().find("td")[4].children[1];
+
+                                    $(val).val("修改");
+                                    alert("添加成功！");
+                                }
+                            });
+                        }
+
+                    }
+
+
+                    function updateBtn(val) {
+                        let id = $(val).parent().parent().find("td")[0].innerHTML;
+                        console.log(id)
+                        let cid = document.getElementById("CourseID").value;
+                        console.log(cid)
+                        var sco = $(val).parent().parent().find("td")[3];
+                        sco = sco.children[0].value
+                        console.log(sco)
+                        var reg = /^((?!0)\d{1,2}|100)$/;
+                        if (sco == "") {
+                            document.getElementById("msg").innerText = "成绩不能为空！"
+                            //document.getElementById("Score").onfocus();
+                            return false;
+                        } else if (!reg.test(sco)) {
+                            document.getElementById("msg").innerText = "成绩格式不正确！"
+                            //document.getElementById("Score").onfocus();
+                            return false;
+                        }
+                        else {
+                            document.getElementById("msg").innerText = ""
+                            $.ajax({
+                                type: "post",
+                                url: "/TGrade/UpdateGrade",
+                                data: { "Score": sco, "CourseID": cid, "StudentID": id },
+                                success: function (res) {
+                                    console.log(res)
+                                    var save = $(val).parent().parent().find("td")[4].children[1];
+
+                                    $(val).val("修改");
+                                    alert("修改成功！");
+                                }
+                            });
+                        }
+
+                    }
+
+                    $(document).ready(function () {
+                        $("#CourseID").change(function () {
+                            var cid = $(this).val();
+                            var arrsid = [];
+                            $.each($(".stuList table tbody tr"), function () {
+                                var obj = $(this);
+                                var sid = obj.find("td:eq(0)").text();
+                                arrsid.push(sid);
+                            });
+                            var sids = arrsid.join(',');
+                            $.ajax({
+                                type: "post",
+                                url: "/TGrade/GetGrade",
+                                data: { "CourseID": cid, "StudentID": sids },
+                                async: false,
+                                success: function (res) {
+                                    console.log(res);
+                                    var arr = res.Data;
+                                    $.each($(".stuList table tbody tr"), function (index) {
+                                        $(this).find("td:eq(3)").find("input").val(arr[index]);
+
+                                        if (arr[index] == "" || arr[index] == undefined) {
+
+                                            $(this).find("td:eq(4)").html('<input type="button" value="添加" class="btn btn-success" id="save" onclick="saveBtn(this)" />');
+                                        }
+                                        else {
+                                            $(this).find("td:eq(4)").html('<input type="button" value="修改" class="btn btn-success" id="save" onclick="updateBtn(this)" />');
+                                        }
+                                    });
+                                }
+                            });
+                        })
+                    })
+                </script>
+            </div>
+        </form>
+    </div>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+
+    <!--引入JavaScript-->
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/1.12.1/pagination/input.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                "pagingType": "input",@* 输入跳转指定页面 *@
+                "lengthMenu": [[6, 20, -1], [6, 20, "全部"]],@* 选中显示的页面条数 *@
+                language: {
+                "sProcessing": "处理中...",
+                    "sLengthMenu": "显示 _MENU_ 项结果",
+                        "sZeroRecords": "没有匹配结果",
+                            "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                                "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                                    "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                                        "sInfoPostFix": "",
+                                            "sSearch": "搜索:",
+                                                "sUrl": "",
+                                                    "sEmptyTable": "表中数据为空",
+                                                        "sLoadingRecords": "载入中...",
+                                                            "sInfoThousands": ",",
+                                                                "oPaginate": {
+                    "sFirst": "首页",
+                        "sPrevious": "上页",
+                            "sNext": "下页",
+                                "sLast": "末页"
+                },
+                "oAria": {
+                    "sSortAscending": ": 以升序排列此列",
+                        "sSortDescending": ": 以降序排列此列"
+                }
+            }
+
+
+        });
+        });
+    </script>
+</body>
+</html>
+

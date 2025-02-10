@@ -1,0 +1,407 @@
+/**
+ * @desc锛氶椤靛脊绐� 鍏嶈垂璇曠敤 modal锛坈ommon.css 涓娊绂伙級
+ **/
+
+/* 鍏嶈垂璇曠敤 modal style start */
+#freeExperienceModal {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: visible;
+}
+
+    #freeExperienceModal .freeMainContent {
+        display: flex;
+        padding: 0 0 0 30px;
+        background: #F8FAFC;
+        border-radius: 8px;
+        box-shadow: 0 2px 15px 0 rgba(0,0,0,0.05);
+        width: 900px;
+        height: 420px;
+    }
+
+        #freeExperienceModal .freeMainContent .freeLeftContent {
+            width: 1400px;
+            padding: 40px 0;
+        }
+
+            #freeExperienceModal .freeMainContent .freeLeftContent img {
+                width: 100%;
+                height: 100%;
+                object-fit: fill;
+            }
+
+            #freeExperienceModal .freeMainContent .freeLeftContent .free_logo {
+                width: 140px;
+                height: 24px;
+                object-fit: contain;
+            }
+
+            #freeExperienceModal .freeMainContent .freeLeftContent .free_desc {
+                font-size: 14px;
+                color: #666E74;
+                letter-spacing: 0;
+                line-height: 18px;
+                margin: 16px 0 14px 0;
+                font-family: PingFangSC-Regular;
+            }
+
+            #freeExperienceModal .freeMainContent .freeLeftContent .free_tips {
+                font-size: 12px;
+                color: #AAB0B5;
+                letter-spacing: 0;
+                line-height: 12px;
+                margin-bottom: 16px;
+                font-family: PingFangSC-Regular;
+            }
+
+            #freeExperienceModal .freeMainContent .freeLeftContent .free_customerImg ul {
+                display: flex;
+                flex-wrap: wrap;
+                margin-bottom: 0;
+            }
+
+                #freeExperienceModal .freeMainContent .freeLeftContent .free_customerImg ul > li {
+                    width: 90px;
+                    height: 38px;
+                    margin-bottom: 18px;
+                    margin-right: 16px;
+                }
+
+                    #freeExperienceModal .freeMainContent .freeLeftContent .free_customerImg ul > li:nth-child(5) {
+                        margin-right: 0;
+                    }
+
+                    #freeExperienceModal .freeMainContent .freeLeftContent .free_customerImg ul > li:nth-child(10) {
+                        margin-right: 0;
+                    }
+
+                    #freeExperienceModal .freeMainContent .freeLeftContent .free_customerImg ul > li:nth-child(15) {
+                        margin-right: 0;
+                    }
+
+                    #freeExperienceModal .freeMainContent .freeLeftContent .free_customerImg ul > li:last-child {
+                        margin-bottom: 10px;
+                        margin-right: 0;
+                    }
+
+
+        #freeExperienceModal .freeMainContent .freeRightContent {
+            padding: 75px 30px 55px 30px;
+            box-shadow: 0 2px 15px 0 rgba(0,0,0,0.05);
+            margin-left: 30px;
+            flex: 1;
+            background: #FFFFFF;
+            border-radius: 8px;
+        }
+
+            #freeExperienceModal .freeMainContent .freeRightContent input {
+                width: 260px;
+                height: 40px;
+                background: #FFFFFF;
+                border: 1px solid #EEEEEE;
+                border-radius: 8px;
+                font-size: 14px;
+                padding: 10px;
+                box-shadow: none;
+            }
+
+            #freeExperienceModal .freeMainContent .freeRightContent .form_title {
+                margin-bottom: 30px;
+            }
+
+            #freeExperienceModal .freeMainContent .freeRightContent .panelTitle {
+                font-size: 18px;
+                color: #111111;
+                letter-spacing: 0;
+                line-height: 18px;
+                font-weight: 500;
+                letter-spacing: 2px;
+                font-family: PingFangSC-Medium;
+            }
+
+            #freeExperienceModal .freeMainContent .freeRightContent button {
+                width: 100%;
+                font-size: 14px;
+                color: #FFFFFF;
+                text-align: center;
+                height: 32px;
+                padding: 0;
+                background: #1980DC;
+                border-radius: 16px;
+                border: none;
+            }
+
+                #freeExperienceModal .freeMainContent .freeRightContent button:hover {
+                    background: #0669C1;
+                    width: 100%;
+                    font-size: 14px;
+                    color: #FFFFFF;
+                    text-align: center;
+                    height: 32px;
+                    padding: 0;
+                    border: none;
+                    border-radius: 16px;
+                }
+
+            /* input special handle style start */
+            #freeExperienceModal .freeMainContent .freeRightContent input::-webkit-input-placeholder {
+                color: #CCCCCC;
+            }
+
+            #freeExperienceModal .freeMainContent .freeRightContent input:-moz-placeholder {
+                /* Mozilla Firefox 4 to 18 */
+                color: #CCCCCC;
+            }
+
+            #freeExperienceModal .freeMainContent .freeRightContent input::-moz-placeholder {
+                /* Mozilla Firefox 19+ */
+                color: #CCCCCC;
+            }
+
+            #freeExperienceModal .freeMainContent .freeRightContent input:-ms-input-placeholder {
+                /* Internet Explorer 10+ */
+                color: #CCCCCC;
+            }
+
+            #freeExperienceModal .freeMainContent .freeRightContent input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+            }
+
+            #freeExperienceModal .freeMainContent .freeRightContent input[type="number"] {
+                -moz-appearance: textfield;
+            }
+            /* input special handle style end */
+
+            #freeExperienceModal .freeMainContent .freeRightContent .form_input_item {
+                position: relative;
+            }
+
+                #freeExperienceModal .freeMainContent .freeRightContent .form_input_item label.error_tips_modal {
+                    position: absolute;
+                    left: 12px;
+                    font-size: 12px;
+                    color: red;
+                }
+
+            #freeExperienceModal .freeMainContent .freeRightContent .otherBtn {
+                margin-top: 18px;
+                text-align: center;
+            }
+
+                #freeExperienceModal .freeMainContent .freeRightContent .otherBtn a {
+                    font-size: 14px;
+                    color: #1980DC;
+                }
+
+/* 鍏嶈垂璇曠敤 modal style end */
+
+
+/* 琛ㄥ崟浜や簰寮圭獥 modal start */
+
+/* 鎻愮ず modal锛堟棤楠岃瘉鐮侊級 start */
+.form_tips_modal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 10px;
+    /* bottom: 0; */
+    margin: auto;
+    width: 400px;
+    height: 150px;
+    background: #FDFDFD;
+    z-index: 99999999;
+    padding-left: 30px;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 5%);
+}
+
+    .form_tips_modal .tips_content {
+        display: flex;
+        margin-bottom: 20px;
+    }
+
+        .form_tips_modal .tips_content .tips_icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 20px;
+        }
+
+            .form_tips_modal .tips_content .tips_icon img {
+                width: 100%;
+                height: 100%;
+            }
+
+        .form_tips_modal .tips_content .tips_text {
+            flex: 1;
+        }
+
+            .form_tips_modal .tips_content .tips_text p {
+                font-size: 14px;
+                color: #111111;
+            }
+
+                .form_tips_modal .tips_content .tips_text p:first-child {
+                    margin-bottom: 10px;
+                }
+
+    .form_tips_modal .tips_btn_area {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 20px;
+    }
+
+        .form_tips_modal .tips_btn_area button {
+            border-radius: 4px;
+        }
+
+            .form_tips_modal .tips_btn_area button:first-child {
+                margin-right: 10px;
+            }
+
+            .form_tips_modal .tips_btn_area button:last-child {
+                background-color: #1980DC;
+                border-color: #1980DC;
+            }
+/* 鎻愮ず modal锛堟棤楠岃瘉鐮侊級 end */
+
+/* 鎻愮ず modal锛堟湁楠岃瘉鐮侊級 start */
+.form_vercode_modal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 10px;
+    /* bottom: 0; */
+    margin: auto;
+    width: 400px;
+    height: 220px;
+    background: #FDFDFD;
+    z-index: 99999999;
+    padding: 30px 10px 10px 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 5%);
+}
+
+    .form_vercode_modal .code_content {
+        display: flex;
+        margin-bottom: 10px;
+    }
+
+        .form_vercode_modal .code_content .code_icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 20px;
+        }
+
+            .form_vercode_modal .code_content .code_icon img {
+                width: 100%;
+                height: 100%;
+            }
+
+        .form_vercode_modal .code_content .code_right {
+            flex: 1;
+        }
+
+            .form_vercode_modal .code_content .code_right .code_text {
+                margin-bottom: 20px;
+                font-size: 14px;
+                color: #111111;
+            }
+
+            .form_vercode_modal .code_content .code_right .ver_code_area {
+                position: relative;
+            }
+
+            .form_vercode_modal .code_content .code_right .act_area {
+                display: flex;
+            }
+
+            .form_vercode_modal .code_content .code_right .ver_code_area input {
+                width: 150px;
+                margin-right: 10px;
+                background: #FFFFFF;
+                border-radius: 4px;
+            }
+
+            .form_vercode_modal .code_content .code_right .ver_code_area button {
+                border-radius: 4px;
+            }
+
+            .form_vercode_modal .code_content .code_right .ver_code_area .code_error_tips {
+                position: absolute;
+                left: 0;
+                bottom: -18px;
+                font-size: 12px;
+                color: red;
+            }
+
+    .form_vercode_modal .code_btn_area {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 20px;
+    }
+
+        .form_vercode_modal .code_btn_area button {
+            border-radius: 4px;
+            background-color: #1980DC;
+            border-color: #1980DC;
+            margin-right: 10px;
+            width: 78px;
+        }
+/* 鎻愮ず modal锛堟湁楠岃瘉鐮侊級 end */
+
+/* 绾彁绀� modal start */
+.common_tips_modal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 10px;
+    /* bottom: 0; */
+    margin: auto;
+    width: 400px;
+    height: 100px;
+    background: #FDFDFD;
+    z-index: 99999999;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 5%);
+}
+
+    .common_tips_modal .tips_content {
+        display: flex;
+    }
+
+        .common_tips_modal .tips_content .tips_icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 20px;
+        }
+
+            .common_tips_modal .tips_content .tips_icon img {
+                width: 100%;
+                height: 100%;
+            }
+
+        .common_tips_modal .tips_content .tips_text {
+            font-size: 14px;
+            color: #111111;
+        }
+/* 绾彁绀� modal end */
+
+/* loading start */
+.loading_area {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99999;
+}
+
+    .loading_area .sk-chase-dot:before {
+        background-color: #1980DC;
+    }
+/* loading end */
+
+/* 琛ㄥ崟浜や簰寮圭獥 modal end */

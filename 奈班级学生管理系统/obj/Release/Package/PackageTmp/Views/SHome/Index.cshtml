@@ -1,0 +1,55 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="~/jsCSSImg/Images/奈班级图标.ico">
+    <style type="text/css">
+        .copyright {
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: #dadada;
+            background: #393939;
+            font-size: 12px;
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+        }
+    </style>
+    <script src="~/jsCSSImg/Scripts/jquery-1.8.3.min.js"></script>
+    <script>
+
+        //折叠展开面板
+        function hideShowFrame() {
+            if (document.getElementById("middenFram").cols == "193,*") {
+                document.getElementById("middenFram").cols = "0,*";
+            }
+            else {
+                document.getElementById("middenFram").cols = "193,*"
+            }
+        }
+    </script>
+</head>
+<frameset rows="50,*,70" cols="*" frameborder="no" border="0" framespacing="0">
+    @*顶部发104px，底部30px，中间部分自适应*@
+    <frame src="~/SHome/Top" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" title="topFrame" />
+    <frameset cols="193,*" frameborder="no" border="0" framespacing="0" id="middenFram">
+        @*左侧193px，右侧自适应*@
+        <frame src="~/SHome/Left" name="leftFrame" scrolling="No" noresize="noresize" id="leftFrame" title="leftFrame" />
+        <frame src="~/SHome/Right" name="mainFrame" id="mainFrame" title="mainFrame" />
+    </frameset>
+    <frame src="~/SHome/Bootom" name="topFrame" scrolling="No" noresize="noresize" id="bootomFrame" title="topFrame" />
+</frameset>
+<noframes>
+    <body>
+    </body>
+</noframes>
+</html>

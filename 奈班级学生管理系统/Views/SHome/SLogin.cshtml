@@ -1,0 +1,256 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>奈班级学生管理系统-登录</title>
+    <link rel="shortcut icon" href="~/jsCSSImg/Images/奈班级图标.ico">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="images/login_images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/login_images/favicon.ico" type="image/x-icon">
+
+
+
+
+    <link rel="stylesheet" type="text/css" media="screen" href="framework/css/bootstrap.min.css">
+
+    <link href="~/LoginContent/DL/font-awesome.css" type="text/css" media="screen" rel="stylesheet" />
+    <link href="~/LoginContent/DL/smartadmin-production.css" type="text/css" media="screen" rel="stylesheet" />
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="framework/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/LoginContent/DL/basic.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/LoginContent/DL/login.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/LoginContent/DL/threeLinkageCity/selCity.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/LoginContent/DL/iconfont.css">
+
+    <script src="~/LoginContent/DL/loginPreCheck.js"></script>
+    <script src="~/LoginContent/DL/validate.js"></script>
+    <script src="framework/js/libs/jquery-1.11.3.min.js"></script>
+    <script src="~/LoginContent/DL/SmartNotification.js"></script>
+
+    <script src="js/commonInclude/threeLinkageCity/Popt.js"></script>
+    <script src="js/commonInclude/threeLinkageCity/cityJson.js"></script>
+    <script src="js/commonInclude/threeLinkageCity/citySet.js"></script>
+
+    <script src="framework/js/plugin/multiselect/bootstrap-multiselect.js"></script>
+
+    <script src="js/libs/base64.min.js"></script>
+    <script src="https://pingtai-prd.oss-cn-shenzhen.aliyuncs.com/frontend-static-mobile/prefixfree.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <style>
+        .mainBg {
+            background-position: 10% 50%;
+            background-size: 100% auto;
+        }
+
+        #verifyCodeDiv {
+            display: flex;
+            margin-top: 40px;
+        }
+
+        #verifyCodeInput {
+            display: flex;
+        }
+
+            #verifyCodeInput input {
+                text-align: center;
+            }
+
+        .verifyCodeWidth {
+            width: 35px;
+            height: 35px;
+            margin-right: 5px;
+        }
+
+        .verifyCodeBorder {
+            border: 1px solid #eee;
+        }
+
+        #verifyBtn {
+            display: flex;
+            width: 160px;
+            height: 35px;
+            border-radius: 3px;
+            margin-left: 10px;
+            justify-content: center;
+        }
+
+        .textColorGray {
+            color: #aaa;
+        }
+
+        .textFontSize {
+            font-size: 14px;
+        }
+
+        .ratio {
+            position: relative;
+            display: block;
+            display: flex;
+            min-height: 500px;
+            background-size: 100% 100%;
+        }
+
+            .ratio:before {
+                content: '';
+                padding-top: calc(590 / 1912 * 100%);
+                float: left;
+            }
+
+            .ratio::after {
+                content: '';
+                display: block;
+                clear: both;
+            }
+
+        #errorphone {
+            color: red;
+        }
+
+        #errorpwd {
+            color: red;
+        }
+       
+    </style>
+    <script type="text/javascript">
+        //学号的非空验证
+        function Check() {
+           var Username = document.getElementById("StudentNum").value;
+            if (Username != "" || Username.value != null) {
+                document.getElementById("errorinfo").style.display = "none";
+                document.getElementById("submit").disabled = false;
+
+            } else {
+
+                document.getElementById("errorinfo").style.display = "block";
+                document.getElementById("submit").disabled = true;
+            }
+        }
+        //密码的非空验证
+        function Check1() {
+            var Userpwd = document.getElementById("StudentPwd").value;
+            if (Userpwd != "" || Userpwd.value != null) {
+
+
+                document.getElementById("errorpwd").style.display = "none";
+                document.getElementById("submit").disabled = false;
+
+
+            }
+            else {
+
+                document.getElementById("errorpwd").style.display = "block";
+                document.getElementById("submit").disabled = true;
+
+            }
+        }
+        function wjmmCheck() {
+            alert("请联系辅导员重置密码！")
+        }
+
+    </script>
+</head>
+<body>
+    <header>
+        <div class="headerContent">
+            <div>
+                <a class="logo" href="#" target="_blank">
+                    <img src="~/jsCSSImg/Images/奈班级3.jpg" style="border:none;height:48px;">
+                </a>
+            </div>
+            <div class="btnGroup">
+
+            </div>
+        </div>
+    </header>
+    <div class="mainBg">
+        <div class="ratio" style="background-image: url(https://oss-prd.xuebangsoft.net/b258b859-c015-430e-a877-1c6e0610884f.jpg)"></div>
+        <div class="main clearfix" style="position: absolute; top: 0; margin: auto; left: 0; right: 0;">
+            <div class="leftArea"></div>
+            <div class="rightArea">
+                <div class="login-panel">
+                    <span id="errorMessage" data-message="null"
+                          style="display: none;"></span>
+                    <input type="hidden" id="requestParamsStrReturn" value="" />
+                    <div class="top">
+                        <a href="/Teacher/Login"><img class="loginLogo" src="~/jsCSSImg/Images/奈班级（透明）.png" style="vertical-align: middle;"></a>
+
+
+                        <i class="iconfont icon-jiaoxueyi1" id="jiaoxueyiIcon" style="display: none; font-size: 32px; vertical-align: middle; margin-left: 30px"></i>
+                    </div>
+                    <form action="/SHome/SLogin" method="post">
+                        <div class="form" id="section-form">
+                            <!-- 登陆  -->
+                            <div class="left_right">
+                                <span class="panelTitle">登录</span>
+                            </div>
+                            <div class="inputDiv inputPseudo">
+                                <img class="field-icon" src="https://www.xuebangsoft.net/eduboss/images/login_images/ico_user.png">
+                                <input class="iconInput" type="text" name="StudentNum" placeholder="请输入您的学号" id="StudentNum" onblur="Check(this);" />
+                                @*@Html.TextBox("StudentNum", "", new {@class= "iconInput" })*@
+                            </div>
+                            @*错误信息提示*@
+                            <div style="display:none;color:red" id="errorinfo">学号不能为空!</div>
+                            <div class="inputDiv inputPseudo">
+                                <img class="field-icon" src="https://www.xuebangsoft.net/eduboss/images/login_images/ico_pwd.png">
+                                <input class="iconInput" type="password" name="StudentPwd" placeholder="请输入您的密码" id="StudentPwd" onblur="Check1(this);" />
+                                @*@Html.Password("StudentPwd", "", new { @class = "iconInput" })*@
+                            </div>
+                            @*图片验证码*@
+                            @* <a href="javascript:;" onclick="reloadcode();"><img id="safecode" src="/SHome/CreateValidate" alt="" /></a><input type="text" name="name" value="" />*@
+                       
+                            @*错误信息提示*@
+                            <div style="display:none;color:red" id="errorpwd">密码不能为空!</div>
+                            <div class="left_right">
+                                <span>
+
+                                </span>
+                                <span class="linkTo" id="forgetPassword" onclick=" wjmmCheck()">忘记密码?</span>
+
+                            </div>
+
+                            <div style="margin-top:30px !important">
+                                <input type="submit" id="submit" value="登录" style="width:100%; font-size:16px;" class="btn btn-primary" />
+                                @Html.ValidationSummary()
+                                <p>@ViewBag.StatusMessage</p>
+                            </div>
+                            <span style="color:red" id="msg"> @ViewBag.StatusMessage</span>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="others footer">
+        <div id="gooleContent" hidden>
+            <p style="font-size: 120%;color:#aaa"> Google宣言：“不要作恶。我们坚信，作为一个为世界做好事的公司，从长远来看，我们会得到更好的回馈—即使我们放弃一些短期收益。”</p>
+        </div>
+        <div>
+            <span>市场招生</span>|<span>教学教务</span>|<span>家校互联</span>|<span>人资财务</span>|<span>OA办公</span>|<span>数据大屏</span>
+        </div>
+        <p class="copyright">
+            &copy;<span id="getFullYear"></span> Xuebang . All rights reserved <a href="http://beian.miit.gov.cn/">粤ICP备14090732号</a>
+            <span style='padding-left: 5px;'>由<a class="loginLine" target="_blank" href="http://www.xuebangsoft.com/">学邦技术</a>提供技术支持</span>
+        </p>
+        <p class="copyright">
+            <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44010602006615" target="_blank">
+                <img style="height: 14px;vertical-align: top;" src="https://www.xuebangsoft.net/eduboss/images/login_images/nationalEmblem.png">
+                <span style="font-size:12px;color:#ccc;">
+                    京公网安备44010602006615号
+                </span>
+            </a>
+        </p>
+    </div>
+    
+</body>
+</html>
+

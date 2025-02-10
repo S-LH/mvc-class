@@ -1,0 +1,74 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang ="en">
+    <head>
+        <meta charset ="UTF-8">
+            <title>bootstrap4</title>
+            <link rel ="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+                <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+                <link href ="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
+    </head> 
+    <body>
+        <div style="height: 60px; line-height: 60px; padding: 0px 14px 0px 5px;">
+        <div style="padding-top:0px; padding-bottom:50px;">
+            <span style="font-size: 25px; font-weight: 600; position: relative; color: rgba(0,0,0,.65);">发布公告 </span>
+
+
+        </div>
+        </div>
+        <form method="post" id="NotForm" action="/TNotices/addByNottice">
+            <p>标题:<input type="text" style="width:95%; height:30px; border :solid 1px #ccc; border-radius:3px; margin-top:5px;" name="Title" id="Title" /></p>
+
+            <textarea name="Content" class="summernote" id="contents" title="Contents"></textarea>
+            @*富文本框*@
+            <input type="text" style="display:none;" name="ContentText" value="" id="ContentText" />
+            @*把富文本框的值给他 但是隐藏了*@
+            <p><input type="submit" style="background-color: #97c8ff; color:white; border:0px; border-radius:3px; float:right;" value="发布" onclick="addbtn()" /></p>
+        </form>
+
+        <script>
+                @* $('#summernote').summernote({
+                    placeholder: 'Hello bootstrap 4',
+                    tabsize: 2,
+                    height: 100,
+                    shortcuts: false,
+                    disableDragAndDrop: true,
+
+                });*@
+                ///初始化富文本框属性样式
+                $('.summernote').summernote({
+                    height: '380px',
+                    lang: 'zh-CN',
+                    toolbar: [
+                        ['style', ['style']],
+                        ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+                        ['fontname', ['fontname']],
+                        ['fontsize', ['fontsize']],
+                        ['color', ['color']],
+                        ['para', ['ol', 'ul', 'paragraph', 'height']],
+                        ['table', ['table']],
+                        ['insert', ['link']],
+                        ['view', ['undo', 'redo', 'fullscreen', 'codeview', 'help']]
+                    ]
+
+                });
+                function addbtn() {
+
+
+                   @* var ss = $($("#summernote").summernote("code")).text();*@ ///获取纯文本
+                    var ss = $(".summernote").summernote("code");
+                    var contentText = $("#ContentText").val(ss);//获取富文本框的内容 赋值给ContentText
+
+
+                }
+
+        </script>
+
+    </body>
+    </html>

@@ -1,0 +1,100 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Jubao</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+
+
+        <!--head-->
+        <!-- 模态框 -->
+
+
+        <div style="height: 60px; line-height: 60px; padding: 0px 14px 0px 5px;">
+            <div style="padding-top:0px; padding-bottom:50px;">
+                <span style="font-size: 25px; font-weight: 600; position: relative; color: rgba(0,0,0,.65);">举报 </span>
+
+
+            </div>
+        </div>
+        <hr />
+
+        <div class="container">
+            <form method="post" enctype="multipart/form-data">
+                <table style="text-align:center">
+                    <tr>
+                        <td>
+                            您的姓名:
+                            <input type="text" name="customerName" class="form-control" width="940" id="name" onblur="xmcheck()"/>
+                            <span id="xmmsg" style="color:red;display:none">姓名不能为空</span>
+                        </td>
+                      
+                    </tr>
+                    @*<tr>
+                            <td>
+                                您的邮箱:
+                                <input type="text" name="customeremail" />
+                            </td>
+                        </tr>*@
+                    @*<tr>
+                            <td>
+                                您的邮箱第三方授权码:
+                                <input type="text" name="customeremailpwd" />
+                            </td>
+                        </tr>*@
+                    <tr>
+                        <td>
+                            您遇到的问题
+                            <br />
+                            <textarea name="customerRequest" class="form-control" cols="940" rows="4" id="wenti" onblur="wtcheck()"></textarea>
+                            <span id="wtmsg" style="color:red;display:none">问题不能为空</span>
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <input id="submit" onclick="check()" class="form-control btn" style=" background-color: #97c8ff; color:white;" type="submit" value="提交" />
+            </form>
+            <script>
+                function check() {
+                    xmcheck();
+                    wtcheck();
+                   alert('您的问题已收到，我们将即时反馈')
+                }
+                function xmcheck() {
+                    var name = document.getElementById("name").value;
+                    if (name != "" || name.value != null) {
+                        document.getElementById("xmmsg").style.display = "none";
+                        document.getElementById("submit").disabled = false;
+
+                    } else {
+
+                        document.getElementById("xmmsg").style.display = "block";
+                        document.getElementById("submit").disabled = true;
+                    }
+                }
+                function wtcheck() {
+                    var name = document.getElementById("wenti").value;
+                    if (name != "" || name.value != null) {
+                        document.getElementById("wtmsg").style.display = "none";
+                        document.getElementById("submit").disabled = false;
+
+                    } else {
+
+                        document.getElementById("wtmsg").style.display = "block";
+                        document.getElementById("submit").disabled = true;
+                    }
+                }
+            </script>
+        </div>
+    </div>
+</body>
+</html>

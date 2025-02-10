@@ -1,0 +1,230 @@
+﻿@model IEnumerable<奈班级学生管理系统.Models.Course>
+
+
+@{
+    //PagedList.IPagedList<奈班级学生管理系统.Models.Course> mypaggelist = (PagedList.IPagedList<奈班级学生管理系统.Models.Course>)ViewBag.mypagelist;
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+    @* //分页的样式*@
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    @*<link href="~/Content/css/pagedlistmvc.css" rel="stylesheet" />*@
+    <style>
+        /*导入导出文字样式*/
+        .daochu {
+            text-decoration: none;
+            color: #337ab7;
+            border: 0px;
+            background-color: white;
+            font-size: 15px;
+        }
+
+        td {
+            font-size: 15px;
+            font-family: 正楷;
+        }
+        @*班级按钮样式end*@ .dataTables_info {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!--head-->
+    <div style="padding-top:10px; padding-bottom:50px;">
+        <div style="float:right;margin-left:10px;">
+            <span class="btn text-align-center">
+
+                <button type="button" class="daochu" data-bs-toggle="modal" data-bs-target="#myModal">
+                    <img src="~/icons/daochu.png" style="width:20px; height:auto;" /> 导入课程明细
+                </button>
+                <button type="button" class="daochu">
+                    <img src="~/icons/daochu.png" style="width:20px; height:auto;" />@Html.ActionLink("导出课程明细", "ExportExcel", "Courses", new { @class = "daochu" })
+                </button>
+
+            </span>
+        </div>
+    </div>
+    <div>
+
+        <button type="button" class="daochu" data-bs-toggle="modal" data-bs-target="#myModal_1">
+            <img src="~/icons/daochu.png" style="width:20px; height:auto;" /> 添加
+        </button>
+    </div>
+    <!--head-->
+    <!-- 模态框 -->
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- 模态框头部 -->
+                <div class="modal-header">
+                    <h4 class="modal-title">导入课程明细</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- 模态框内容 -->
+                <div class="modal-body">
+                    @using (Html.BeginForm("Import", "Courses", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class=" container text-align-center">
+                            <input name="file" type="file" id="=file" class="mystyle " />
+                        </div>
+                        <br />
+                        <br />
+                        <div class=" container text-align-center">
+                            <input name="submit" id="submit" type="submit" class="btn btn-success" value="批量导入" />
+                        </div>
+                    }
+                </div>
+
+                <!-- 模态框底部 -->
+                <div class="modal-footer">
+                    <button type="button" class="btn " data-bs-dismiss="modal">关闭</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal_1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- 模态框头部 -->
+                <div class="modal-header">
+                    <h4 class="modal-title">添加信息</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- 模态框内容 -->
+                <div class="modal-body">
+                    <form method="post" action="~/Courses/Create">
+                        <p>课程名:<input type="text" name="CourseName" class="form-control" /></p>
+                        <p>学分:<input type="text" name="Credit" class="form-control" /></p>
+                        <p>学时:<input type="text" name="CreditTime" class="form-control" /></p>
+                        <p>通过率:<input type="text" name="Rate" class="form-control" /></p>
+                        <p>任课老师:<input type="text" name="Rteacher" class="form-control" /></p>
+                        <input type="submit" value="提交" />
+                    </form>
+                </div>
+
+                <!-- 模态框底部 -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">关闭</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <table class="order-column " width="100%" id="example">
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    课程名称
+                </th>
+                <th>
+                    学分
+                </th>
+                <th>
+                    学时
+                </th>
+                <th>
+                    通过率
+                </th>
+                <th>
+                    任课老师
+                </th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CourseName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Credit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreditTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rate)%
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rteacher)
+                    </td>
+                    <td class="btn-group-sm">
+                        <a class="btn" style="background-color: #6dd9c3; color:white;" href="~/Courses/Edit?id=@item.CourseID">修改</a>
+                        <a class="btn" style="background-color: #f59da6; color: white; " href="/Courses/Delete?id=@item.CourseID">移除</a>
+
+                </tr>
+
+            }
+        </tbody>
+        </table>
+  
+    @* 每页 @mypaggelist.PageSize 条记录,共 @mypaggelist.PageCount 页，当前 @mypaggelist.PageNumber 页
+        @Html.PagedListPager(mypaggelist, Page => Url.Action("Login", new { Page }))*@
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+
+    <!--引入JavaScript-->
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/1.12.1/pagination/input.js"></script>
+
+    <!--初始化代码-->
+
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                "pagingType": "input",@* 输入跳转指定页面 *@
+                "lengthMenu": [[6, 10, 20, -1], [6, 10, 20, "All"]],@* 选中显示的页面条数 *@
+                language: {
+                    "sProcessing": "处理中...",
+                    "sLengthMenu": "显示 _MENU_ 项结果",
+                    "sZeroRecords": "没有匹配结果",
+                    "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                    "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                    "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                    "sInfoPostFix": "",
+                    "sSearch": "搜索:",
+                    "sUrl": "",
+                    "sEmptyTable": "表中数据为空",
+                    "sLoadingRecords": "载入中...",
+                    "sInfoThousands": ",",
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": "上页",
+                        "sNext": "下页",
+                        "sLast": "末页"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": 以升序排列此列",
+                        "sSortDescending": ": 以降序排列此列"
+                    }
+                }
+
+               
+            });
+        });
+    </script>
+</body>
+</html>

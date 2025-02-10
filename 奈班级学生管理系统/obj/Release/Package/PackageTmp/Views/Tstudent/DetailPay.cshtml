@@ -1,0 +1,53 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+@using 奈班级学生管理系统.Models
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DetailPay</title>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <div style="height: 60px; line-height: 60px; padding: 0px 14px 0px 5px;">
+            <div style="padding-top:0px; padding-bottom:50px;">
+                <span style="font-size: 25px; font-weight: 600; position: relative; color: rgba(0,0,0,.65);">缴费详情 </span>
+
+            </div>
+        </div>
+        <a href="/Tstudent/MoneyJL">返回</a>
+        <hr />
+        <table class="table table-bordered">
+            <tr>
+                <th>班级</th>
+                <th>缴费类型</th>
+                <th>缴费金额</th>
+                <th>状态</th>
+                <th>时间</th>
+             
+            </tr>
+
+            @foreach (var item in ViewBag.Paylist)
+            {
+                <tr>
+                    <td> @item.classname 生活委员 @item.stuname</td>
+                    <td> @item.stely</td>
+                    <td>@item.money</td>
+                    <td>@item.state</td>
+                    <td>@item.time</td>
+                   
+                </tr>
+
+
+            }
+        </table>
+
+    </div>
+</body>
+</html>

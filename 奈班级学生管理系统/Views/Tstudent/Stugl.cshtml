@@ -1,0 +1,299 @@
+﻿
+
+@{
+
+
+    Layout = null;
+}
+@using 奈班级学生管理系统.Models
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    @*<link href="~/Content/css/index.css" rel="stylesheet" />*@
+
+   
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/jsCSSImg/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+    @* //分页的样式*@
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+    @*<link href="~/Content/css/pagedlistmvc.css" rel="stylesheet" />*@
+
+    <!--第一步：引入Javascript / CSS （CDN）-->
+    <style>
+        /*导入导出文字样式*/
+        .daochu {
+            text-decoration: none;
+            color: #337ab7;
+            border: 0px;
+            background-color: white;
+            font-size: 15px;
+        }
+
+        td {
+            font-size: 12px;
+            font-family: 正楷;
+            color:#000000A6;
+        }
+
+
+        @*班级按钮样式stare*@
+        .pagination > li > a, .pagination > li > span {
+            padding: 6px 3px;
+            border: 0px
+        }
+        .btn {
+            color: rgba(0,0,0,.65);
+        }
+
+
+
+        .ant-tag-checkable:not(.ant-tag-checkable-checked):hover {
+            color: #97c8ff;
+        }
+
+        .ant-tag-checkable-checked, .ant-tag-checkable:active {
+            color: white;
+        }
+
+        .ant-tag-checkable-checked {
+            background-color: #97c8ff;
+        }
+        @*班级按钮样式end*@
+        .dataTables_info {
+            display: none;
+        }
+        /*右侧导航栏宽度*/
+       @* .offcanvas-end {
+
+            width: 70%;
+
+        }*@
+        a {
+            color: #337ab7;
+            text-decoration: none;
+        }
+        .hh {
+            border: 1px solid #d9d9d9;
+            border-radius: 4px;
+           
+        }
+        span{
+            color:#000000D6;
+        }
+        p{
+            width:80%;
+        }
+        body{
+            height:100%
+        }
+        .xg {
+            padding-left: 50px;
+        }
+      
+    </style>
+</head>
+<body>
+    <div>
+
+
+        <!--head-->
+        <!-- 模态框 -->
+
+
+        <div style="height: 60px; line-height: 60px; padding: 0px 14px 0px 5px;">
+            <div style="padding-top:0px; padding-bottom:50px;">
+                <span style="font-size: 25px; font-weight: 600; position: relative; color: rgba(0,0,0,.65);">学生管理 </span>
+
+
+            </div>
+        </div>
+        <hr />
+
+
+        <div class="ant-card-body" style="padding: 5px 10px;">
+            <form>
+
+                <div class="tagSelect___1h9X3 expanded___350SQ">
+                    @* 遍历循环班级编号*@
+                    <a class="ant-tag ant-tag-checkable ant-tag-checkable-checked btn" style="text-decoration: none; margin-bottom: 6px; cursor: pointer;" href="/Tstudent/Stugl">全部班级</a>
+
+                    @foreach (var item in ViewBag.classlist)
+                    {
+                        <a class="ant-tag ant-tag-checkable btn" style="cursor: pointer; margin-right: 16px; margin-bottom: 6px;" href="/Tstudent/Stugl?id=@item.ClassID">@item.ClassName</a>
+
+
+                    }
+                </div>
+
+
+            </form>
+        </div>
+        <hr />
+        <div id="stu">
+            <table class="order-column " width="100%" id="example">
+                <thead>
+                    <tr>
+                       
+                        <th>
+                            姓名
+                        </th>
+                        <th>学号</th>
+                        <th>
+                            电话
+                        </th>
+                        <th>
+                            性别
+                        </th>
+
+
+
+                        <th>
+                            宿舍
+                        </th>
+                        <th>
+                            家乡
+                        </th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item1 in ViewBag.stulist as List<奈班级学生管理系统.Models.Student>)
+                    {
+                        <tr>
+                           
+                            <td>
+                                @item1.StudentName
+                            </td>
+                            <td>@item1.StudentNum</td>
+                            <td>
+                                @item1.Tell
+                            </td>
+                            <td>
+                                @item1.Sex
+
+                            </td>
+
+                           
+
+                            <td>
+                                @item1.Dorm
+                                @*@Html.DisplayFor(modelItem => item.Dorm)*@
+                            </td>
+                            <td>
+                                @item1.Hometown
+                                @*@Html.DisplayFor(modelItem => item.Hometown)*@
+                            </td>
+
+                            <td>
+                                <a href="del?stuid=@item1.StudentID" onclick="return confirm('是否确定删除')">删除</a>
+                                <a href="Stugl?stuid=@item1.StudentID" style="border:0px; background-color:white;" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" onclick="Open(@item1.StudentID)">修改</a>
+                                <a href="RestPwd?stuid=@item1.StudentID" onclick="return confirm('是否确定重置')">重置密码</a>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+           
+        </div>
+         
+    </div>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labSelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 id="offcanvasRightLabel">修改学生信息 </h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <hr />
+          
+            <div class="container">
+                <form method="post" action="/Tstudent/EditStu">
+                    <input  name="StudentID" style="display:none" class="StuID"/>
+                    <p class="xg"> <span>姓名</span> @Html.TextBox("StudentName", "", new { @class = "Name" })</p>
+                    <p class="xg"> <span>学号</span> @Html.TextBox("StudentNum", "", new { @class = "Num" })</p>
+                    <p class="xg"> <span>电话</span> @Html.TextBox("Tell", "", new { @class = "Tel" })</p>
+                    <p class="xg"><span>性别</span>  @Html.TextBox("Sex", "", new { @class = "Sex" })</p>
+                    <p class="xg"> <span>宿舍</span> @Html.TextBox("Dorm", "", new { @class = "Drom" })</p>
+                    <p class="xg"><span>家乡</span>  @Html.TextBox("Hometown", "", new { @class = "Home" })</p>
+
+                    <p style="padding-left:180px">
+                        <button type="button" style="border:0px; background-color:white;" class="text-reset" data-bs-dismiss="offcanvas" aria-label="Close">取消</button>
+
+                        <input type="submit" value="修改" style="border:0px; background-color:white;" />
+
+                    </p>
+                </form>
+            </div>
+          
+        </div>
+    </div>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+
+    <!--引入JavaScript-->
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/1.12.1/pagination/input.js"></script>
+
+    <!--初始化代码-->
+
+    <script>
+        function Open(dataS) {
+            $.ajax({
+                url: "/Tstudent/GetStudent?id=" + dataS,
+                type:"get",
+                success: data=> {
+                    var StuInfo = JSON.parse(data)
+                    $(".StuID").val(StuInfo.StudentID)
+                    $(".Name").val(StuInfo.Name)
+                    $(".Num").val(StuInfo.Num)
+                    $(".Tel").val(StuInfo.Tel)
+                    $(".Sex").val(StuInfo.Sex)
+                    $(".Drom").val(StuInfo.Drom)
+                    $(".Home").val(StuInfo.Home)
+                },
+                error: error => {
+                    console.log(error)
+                }
+            })
+        }
+        $(document).ready(function () {
+            $('#example').DataTable({
+                "pagingType": "input",@*输入跳转指定页面*@
+                "lengthMenu": [[8,20, -1], [ 8,20,"全部"]],@*选中显示的页面条数*@
+                language: {
+                    "sProcessing": "处理中...",
+                    "sLengthMenu": "显示 _MENU_ 项结果",
+                    "sZeroRecords": "没有匹配结果",
+                    "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                    "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                    "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                    "sInfoPostFix": "",
+                    "sSearch": "搜索:",
+                    "sUrl": "",
+                    "sEmptyTable": "表中数据为空",
+                    "sLoadingRecords": "载入中...",
+                    "sInfoThousands": ",",
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": "上页",
+                        "sNext": "下页",
+                        "sLast": "末页"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": 以升序排列此列",
+                        "sSortDescending": ": 以降序排列此列"
+                    }
+                }
+
+               
+            });
+        });
+
+    </script>
+</body>
+</html>

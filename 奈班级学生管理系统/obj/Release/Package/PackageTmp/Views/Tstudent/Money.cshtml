@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = null;
+}
+@using 奈班级学生管理系统.Models
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Money</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div style="height: 60px; line-height: 60px; padding: 0px 14px 0px 5px;">
+        <div style="padding-top:0px; padding-bottom:50px;">
+            <span style="font-size: 25px; font-weight: 600; position: relative; color: rgba(0,0,0,.65);">发起缴费 </span>
+
+        </div>
+    </div>
+    <hr />
+    <div class="container">
+        <form method="post">
+
+            <p>缴费类型:  <input type="text" name="PayStely" class="form-control" /></p>
+            <p>
+                选择班级:  <select name="StudentID" class="form-control" >
+                    @foreach (var item in ViewBag.stulist as List<奈班级学生管理系统.Models.Student>)
+                    {
+                        <option value="@item.StudentID">@item.Class.ClassName 生活委员 @item.StudentName</option>
+                    }
+
+                </select>
+            </p>
+            <p>缴费金额:  <input type="text" name="PayMoney" class="form-control" /></p>
+            <p><input type="submit" value="发起"class="form-control btn" style="background-color: #97c8ff;color:white;"   /></p>
+
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <style>
+       
+        iframe {
+           @* position: absolute;*@
+        }
+    </style>
+    <link href="~/Content/css/index.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/EChart/jquery-3.4.1.js"></script>
+</head>
+<body>
+    <div style="height: 60px; line-height: 60px; padding: 0px 14px 0px 5px;">
+        <span style="font-size: 20px; font-weight: 600; position: relative;">学生分析 </span>
+    </div>
+    <div class="ant-card-body" style="padding: 5px 10px;">
+        <form class="ant-form ant-form-inline">
+            <div class="standardFormRow___ZEQzn standardFormRowBlock___1DXkQ" style="padding-bottom: 4px; margin-bottom: 8px;">
+                <div class="label___9Ca6y"><span>班级</span></div><div class="content___1-IC9">
+                    <div class="ant-row ant-form-item">
+                        <div class="ant-col ant-form-item-control-wrapper">
+                            <div class="ant-form-item-control has-success">
+                                <span class="ant-form-item-children">
+                                    <div class="tagSelect___1h9X3 expanded___350SQ">
+                                        <span class="ant-tag ant-tag-checkable btn" style="cursor: pointer; margin-right: 16px; margin-bottom: 6px;" onclick="1902()">软件1902班</span>
+                                        <span class="ant-tag ant-tag-checkable btn" style="cursor: pointer; margin-right: 16px; margin-bottom: 6px;" onclick="1905()">软件1905班</span>
+                                        <span class="ant-tag ant-tag-checkable" style="cursor: pointer; margin-right: 16px; margin-bottom: 6px;" onclick="1908()">软件1908班</span>
+                                        <span class="ant-tag ant-tag-checkable" style="cursor: pointer; margin-right: 16px; margin-bottom: 6px;" onclick="2003()">软件2003班</span>
+                                        <span><button onclick="T2004()" class="ant-tag ant-tag-checkable btn" style="cursor: pointer; margin-right: 16px; margin-bottom: 6px;">软件2004班</button></span>
+                                        <span class="ant-tag ant-tag-checkable" style="cursor: pointer; margin-right: 16px; margin-bottom: 6px;" onclick="2014()">软件2104班</span>
+                                        <span class="ant-tag ant-tag-checkable" style="cursor: pointer; margin-right: 16px; margin-bottom: 6px;" onclick="2015()">软件2105班</span>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+        </form>
+    </div>
+    <div class="ant-tabs-nav-wrap"><div class="ant-tabs-nav-scroll"><div class="ant-tabs-nav ant-tabs-nav-animated"><div><div role="tab" aria-disabled="false" aria-selected="true" class="ant-tabs-tab-active ant-tabs-tab">学生明细</div></div><div class="ant-tabs-ink-bar ant-tabs-ink-bar-animated" style="display: block; transform: translate3d(0px, 0px, 0px); width: 88px;"></div></div></div></div>
+    <div style="height:200px">
+        <iframe id="myiframe" src="/TStudents/Index"  width="100%" scrolling="yes"frameborder="0" height="190%"></iframe>
+    </div>
+    <script src="~/Content/css/index.js"></script>
+    <script>
+
+        function T2004() {
+            document.getElementById("iframe").src = "/TStudent/T2004";
+        }
+
+
+    </script>
+</body>
+</html>

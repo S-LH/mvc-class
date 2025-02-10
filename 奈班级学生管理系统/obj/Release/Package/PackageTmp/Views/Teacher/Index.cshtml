@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <title>奈班级学生管理系统</title>
+    <script src="~/EChart/jquery-3.4.1.js"></script>
+    <script src="~/DataTables-1.10.21/jquery.dataTables.min.js"></script>
+    <link href="~/DataTables-1.10.21/jquery.dataTables.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/jsCSSImg/Images/奈班级图标.ico">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <style type="text/css">
+        .copyright {
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: #dadada;
+            background: #393939;
+            font-size: 12px;
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+    <script src="~/jsCSSImg/Scripts/jquery-1.8.3.min.js"></script>
+    <script>
+
+        //折叠展开面板
+        function hideShowFrame() {
+            if (document.getElementById("middenFram").cols == "193,*") {
+                document.getElementById("middenFram").cols = "0,*";
+            }
+            else {
+                document.getElementById("middenFram").cols = "193,*"
+            }
+        }
+    </script>
+</head>
+
+    <frameset rows="50,*,30" cols="*" frameborder="no" border="0" framespacing="0">
+        @*顶部发104px，底部30px，中间部分自适应*@
+        <frame src="~/Teacher/Top" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" title="topFrame" />
+        <frameset cols="193,*" frameborder="no" border="0" framespacing="0" id="middenFram">
+            @*左侧193px，右侧自适应*@
+            <frame src="~/Teacher/Left" name="leftFrame" scrolling="No" noresize="noresize" id="leftFrame" title="leftFrame" />
+            <frame src="~/Teacher/Right" name="mainFrame" id="mainFrame" title="mainFrame" />
+        </frameset>
+        <frame src="~/Teacher/Bootom" name="topFrame" scrolling="No" noresize="noresize" id="bootomFrame" title="topFrame" />
+    </frameset>
+    
+    <noframes>
+
+        
+    </noframes>
+
+</html>

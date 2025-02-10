@@ -1,0 +1,137 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Student</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/SCss/debug.css" rel="stylesheet" />
+    <link href="~/SCss/index.css" rel="stylesheet" />
+    <style>
+        .stuname {
+            letter-spacing: 10px;
+            margin-left: 100px;
+        }
+
+        .stunum {
+            margin-left: 100px;
+        }
+
+        .stutel {
+            margin-top: 40px;
+            margin-left: 100px;
+        }
+
+        .stumajoy {
+            margin-left: 100px;
+        }
+
+        .stutea {
+            margin-left: 100px;
+        }
+
+        .stuads {
+            margin-left: 100px;
+        }
+
+        .stucou {
+            margin-left: 100px;
+        }
+
+        img {
+            margin-left: 20px;
+            width: 100px;
+            height: 100px;
+        }
+
+        .icon {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="Student">
+        <div class="head">
+            <h2>基本信息</h2>
+            <hr />
+        </div>
+        <div class="zhongjian">
+            <div class="row">
+                <div class="col-md-5">
+
+                    @foreach (var item in ViewBag.Slist as List<奈班级学生管理系统.Models.Student>)
+                    {
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img src="~/icons/头像.png" />
+                            </div>
+                            <div class="col-md-10">
+                                <h2 class="stuname">姓名：@item.StudentName</h2>
+                                <p class="stunum">学号：@item.StudentNum</p>
+                            </div>
+                        </div>
+
+                        <div class="stutel">
+                            <img src="~/icons/电话.jpg" class="icon" /><span>电话：@item.Tell</span>
+                        </div>
+                        <hr />
+
+                        <div class="stumajoy">
+                            <img src="~/icons/专业.png" class="icon" /><span>专业：@item.Major</span>
+                        </div>
+                        <hr />
+                        <div class="stutea">
+
+                            <img src="~/icons/辅导员.png" class="icon" />
+                            <span> 辅导员老师：@item.Teacher.TeacherName</span>
+                        </div>
+                        <hr />
+                        <div class="stuads">
+                            <img src="~/icons/地址.jpg" class="icon" /><span>地址：@item.Hometown</span>
+                        </div>
+                        <hr />
+                        <div class="stucou">
+
+                            <img src="~/icons/课程.png" class="icon" /><span>所学课程：@ViewBag.Count 科</span>
+                        </div>
+                    }
+                </div>
+                <div class="col-md-7">
+                    <div class="step-body" id="myStep">
+                        <div class="step-content">
+                            <div class="step-list">
+                                @foreach (var item in ViewBag.CourseList)
+                                {
+                                    <div class="intro-flow">
+                                        <div class="intro-list">
+                                            <div class="intro-list-left">
+                                                @*课程一*@
+
+                                            </div>
+                                            <div class="intro-list-right">
+                                                <span> @item.CourseID</span>
+                                                <div class="intro-list-content">
+                                                    @*形式与政策*@
+                                                    @item.CourseName
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

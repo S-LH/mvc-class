@@ -1,0 +1,201 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <link href="~/jsCSSImg/Content/sharestyle.css" rel="stylesheet" />
+    <link href="~/jsCSSImg/Content/main.css" rel="stylesheet" />
+    <style type="text/css">
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #divOrder {
+            background-color: white;
+        }
+     
+        .leftbar dt {
+            color: #4392cd;
+            font-size: 15px;
+            font-family: 正楷;
+            margin-top: 10px;
+        }
+
+        .head4 {
+            height: 45px;
+            line-height: 45px;
+            padding-left: 30px;
+        }
+
+        .box_n a {
+            font-size: 16px;
+        }
+        .leftbar .head1 {
+            background: url(../../icons/xiazhankai.png) no-repeat 15px 13px;
+        }
+        .leftbar .head2 {
+            background: url(../../icons/shangzhankai.png) no-repeat 15px 13px;
+        }
+    </style>
+
+    <script src="~/jsCSSImg/Scripts/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript">
+        //显示菜单下面的选项
+        function ShowMenuList(id) {
+            var objectobj = document.getElementById(id);
+            var dtObj = document.getElementById("dt_" + id);
+            if (objectobj.style.display == "none") {
+                objectobj.style.display = "";
+                dtObj.setAttribute("class", "head2");
+                //其它菜单折叠
+                $(dtObj).parent().parent().find("dt").not(dtObj).attr("class", "head1"); //折叠
+                $(objectobj).parent().parent().find("ul").not(objectobj).css("display", "none"); //隐藏菜单子项
+            }
+            else {
+                objectobj.style.display = "none";
+                dtObj.setAttribute("class", "head1");
+            }
+        }
+        //控制菜单模块的显示和隐藏
+        function showDivMenu(divId) {
+            $("#" + divId).css("visibility", "visible");
+            $("#" + divId).siblings("div").css("visibility", "hidden");
+        }
+        $(function () {
+            $(".box_n li a").click(function () {
+                $(".box_n li a").removeClass("nav_sub");
+                $(this).addClass("nav_sub");
+            });
+        });
+
+        //在Left视图中，添加如下js方法：Left中的菜单点击时调用Right视图中的添加页签方法addTab
+        function goNewPage(url, name) {
+            self.parent.frames["mainFrame"].addTab(url, name);
+        }
+        function goNewPage1(url, name) {
+            self.parent.frames["mainFrame"].addTab1(url, name);  //如何添加一个标签：mainFrame不要改 addTab1要改
+        }
+        function goNewPage2(url, name) {
+            self.parent.frames["mainFrame"].addTab2(url, name);  //如何添加一个标签：mainFrame不要改 addTab1要改
+        }
+        function goNewPage3(url, name) {
+            self.parent.frames["mainFrame"].addTab3(url, name);  //如何添加一个标签：mainFrame不要改 addTab1要改
+        }
+        function goNewPage4(url, name) {
+            self.parent.frames["mainFrame"].addTab4(url, name);  //如何添加一个标签：mainFrame不要改 addTab1要改
+        }
+        function goNewPage5(url, name) {
+            self.parent.frames["mainFrame"].addTab5(url, name);  //如何添加一个标签：mainFrame不要改 addTab1要改
+        }
+        function goNewPage6(url, name) {
+            self.parent.frames["mainFrame"].addTab6(url, name);  //如何添加一个标签：mainFrame不要改 addTab1要改
+        }
+        function goNewPage7(url, name) {
+            self.parent.frames["mainFrame"].addTab7(url, name);  //如何添加一个标签：mainFrame不要改 addTab1要改
+        }
+          function goNewPage8(url, name) {
+            self.parent.frames["mainFrame"].addTab8(url, name);  //如何添加一个标签：mainFrame不要改 addTab1要改
+        }
+         
+        function goNewPage10(url, name) {
+            self.parent.frames["mainFrame"].addTab10(url, name);  //如何添加一个标签：mainFrame不要改 addTab1要改
+        }
+    </script>
+
+
+
+</head>
+<body>
+
+
+
+    <div class="leftbar" id="divOrder">
+        <dl>
+
+            <dt class="head2" id="dt_ulOrder" onclick='ShowMenuList("ulOrder")'>学生看板</dt>
+            <ul class="box_n" id="ulOrder">
+                @* 根据数量自己加  onclick="goNewPage2不能重复 要在leftjs代码中改 和right*@
+                <li><a target="mainFrame" id="channelManage" onclick="goNewPage('/Echart/Echart','统计');">统计</a></li>
+
+
+            </ul>
+        </dl>
+        <dl>
+            <dt class="head1" id="dt_ulTZ" onclick='ShowMenuList("ulTZ")'>发布通知</dt>
+            <ul class="box_n" id="ulTZ" style="display:none;">
+                <li><a target="mainFrame" id="channelManage" onclick="goNewPage4('/TNotices/Index','发布');">发布</a></li>
+                <li><a target="mainFrame" id="channelManage" onclick="goNewPage5('/TNotices/List','公告栏');">公告栏</a></li>
+
+            </ul>
+        </dl>
+        <dl>
+            <dt class="head1" id="dt_ulClass" onclick='ShowMenuList("ulClass")'>班级管理</dt>
+            <ul class="box_n" id="ulClass" style="display:none;">
+                <li><a target="mainFrame" id="channelManage" onclick="goNewPage1('/Tstudent/Stugl','学生管理');">学生管理</a></li>
+                <li><a target="mainFrame" id="channelManage" onclick="goNewPage2('/Tstudent/Sturz','班委任命');">班委任命</a></li>
+                <li><a target="mainFrame" id="channelManage" onclick="goNewPage3('/Tstudent/Index','学生详情');">学生详情</a></li>
+               
+            </ul>
+        </dl>
+
+        <dl>
+            <dt class="head1" id="dt_ulKC" onclick='ShowMenuList("ulKC")'>课程表</dt>
+            <ul class="box_n" id="ulKC" style="display:none;">
+                <li><a target="mainFrame" id="channelManage" onclick="goNewPage6('/Courses/Login','课程表中心');">课程表中心</a></li>
+                <li><a target="mainFrame" id="channelManage" onclick="goNewPage7('/TGrade/AddGrade','学生成绩');">学生成绩</a></li>
+
+
+            </ul>
+        </dl>
+        
+
+        <dl>
+            <dt class="head1" id="dt_ulJF" onclick='ShowMenuList("ulJF")'>缴纳费用</dt>
+            <ul class="box_n" id="ulJF" style="display:none;">
+                <li><a target="mainFrame" id="channelManage" onclick="goNewPage8('/Tstudent/Money','发起缴费');">发起缴费</a></li>
+                <li><a target="mainFrame" id="channelManage" onclick="goNewPage10('/Tstudent/MoneyJL','发起缴费记录');">发起缴费记录</a></li>
+
+
+            </ul>
+        </dl>
+
+
+
+
+        <dl>
+            <dt class="head1" id="dt_ulChat" onclick='ShowMenuList("ulChat")'>在线聊天</dt>
+            <ul class="box_n" id="ulChat" style="display:none;">
+                @*<li><a href="~/Chat/Chat">在线聊天</a></li>*@
+
+                <li><a target="mainFrame" id="channelManage" onclick="goNewPage7('/Chat/Chat','即时聊天口');">即时聊天口</a></li>
+
+            </ul>
+        </dl>
+
+       @* <dl>
+
+
+            <dt class="head1" id="dt_ulIdentityCard" onclick='ShowMenuList("ulIdentityCard")'>个人信息</dt>
+            <ul class="box_n" id="ulIdentityCard" style="display:none;">
+                <li><a href="#">修改信息</a></li>
+
+            </ul>
+        </dl>*@
+        <dl>
+
+
+            <dt class="head1" id="dt_ultcdl" onclick='ShowMenuList("ultcdl")'>退出登录</dt>
+            <ul class="box_n" id="ultcdl" style="display:none;">
+                <li><a id="channelManage" href="/Teacher/Login" title="安全退出" target="_Left">点击退出</a></li>
+
+            </ul>
+        </dl>
+    </div>
+
+</body>
+</html>

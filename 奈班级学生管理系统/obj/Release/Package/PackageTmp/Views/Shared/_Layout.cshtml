@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/admin.css" rel="stylesheet" />
+    <link href="~/Content/icon.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        body {
+            padding-top: 25px;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <span style="font-size: 25px; font-weight: 600; position: relative; color: rgba(0,0,0,.65); ">学生看板 </span>
+
+    <div class="row">
+        <div class="col-lg-3 col-xs-3">
+            <!-- small box -->
+            <div class="small-box " style="background-color: #F75D59; color: white;">
+
+                <div class="inner">
+                    <h3 _msthash="2247154" _msttexthash="15587">@ViewBag.gqty</h3>
+
+                    <p _msthash="2181088" _msttexthash="8582457">共青团员</p>
+                </div>
+                <div class="icon">
+
+                    <img src="~/icons/tianjiayonghutianchong.png" />
+                </div>
+                <a href="#" class="small-box-footer"><font _mstmutation="1" _msthash="1776749" _msttexthash="10372479">更多信息</font><i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-3">
+            <!-- small box -->
+            <div class="small-box " style="background-color: #FFDB58; color: white;">
+
+                <div class="inner">
+                    <h3><font _mstmutation="1" _msthash="2247882" _msttexthash="10127">@ViewBag.msg</font><sup style="font-size: 20px"></sup></h3>
+
+                    <p _msthash="2181790" _msttexthash="8949668">总人数</p>
+                </div>
+                <div class="icon">
+
+                    <img src="~/icons/tongji.png" />
+                </div>
+                <a href="#" class="small-box-footer"><font _mstmutation="1" _msthash="1777295" _msttexthash="10372479">更多信息</font><i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-3">
+            <!-- small box -->
+            <div class="small-box " style="background-color: #99C68E; color: white;">
+
+                <div class="inner">
+                    <h3 _msthash="2248610" _msttexthash="10140">@ViewBag.nan</h3>
+
+                    <p _msthash="2182492" _msttexthash="11319984">男生数量</p>
+                </div>
+                <div class="icon">
+                    <img src="~/icons/nan.png" />
+
+                </div>
+                <a href="#" class="small-box-footer"><font _mstmutation="1" _msthash="1777841" _msttexthash="10372479">更多信息</font><i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-3">
+            <!-- small box -->
+            <div class="small-box " style="background-color:#FDD7E4; color:white;">
+                <div class="inner">
+                    <h3 _msthash="2249338" _msttexthash="10426">@ViewBag.nv</h3>
+
+                    <p _msthash="2183194" _msttexthash="27605084">女生数量</p>
+                </div>
+                <div class="icon">
+
+                    <img src="~/icons/nv_1.png" />
+                </div>
+                <a href="#" class="small-box-footer"><font _mstmutation="1" _msthash="1778387" _msttexthash="10372479">更多信息</font><i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        @*<footer>
+                <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
+            </footer>*@
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

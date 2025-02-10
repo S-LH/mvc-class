@@ -1,0 +1,139 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SNotice</title>
+    <link rel="shortcut icon" href="~/jsCSSImg/Images/奈班级图标.ico">
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/DataTables-1.10.21/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="~/DataTables-1.10.21/jquery.dataTables.min.js"></script>
+    @*<script src="~/DataTables/datatables.min.js"></script>
+        <link href="~/DataTables/datatables.min.css" rel="stylesheet" />*@
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+
+    <style>
+        .SNotice {
+        }
+
+        #Notice {
+            padding-top: 20px;
+        }
+
+        #notice {
+            font-size: 20px;
+        }
+
+            #Notice a:hover {
+                color: red;
+            }
+
+        .select {
+            margin-left: 40px;
+        }
+
+        #Notice {
+            margin-left: 40px;
+        }
+    </style>
+    <script>
+
+
+        $(document).ready(function () {
+            $('#table_id').DataTable({
+                "searching": false, //去掉搜索框方法一
+                "oLanguage": {
+                    "sLengthMenu": "每页显示 _MENU_条",
+                    "sZeroRecords": "没有找到符合条件的数据",
+                    "sProcessing": "&lt;img src=’./loading.gif’ /&gt;",
+                    "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
+                    "sInfoEmpty": "木有记录",
+                    "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
+                    "sSearch": "搜索：",
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": "上一页",
+                        "sNext": "下一页",
+                        "sLast": "尾页",
+
+                    }
+                },
+                "pageLength": 6,
+                "lengthMenu": [6, 12]
+
+            });
+
+
+        });
+
+
+    </script>
+</head>
+<body>
+    <div>
+        <div class="SNotice">
+            <div class="head">
+                <h2>通知公告</h2>
+                <hr />
+            </div>
+            <div class="select">
+                <div class="row">
+                    @using (Ajax.BeginForm("SNotice", new AjaxOptions()
+                    {
+                        UpdateTargetId = "Notice",
+                        HttpMethod = "Post",
+                        LoadingElementId = "loadingImg",
+                        InsertionMode = InsertionMode.Replace
+
+                    }))
+                    {
+                        <div class="col-md-2"><input type="text" name="Title" class="form-control" placeholder="输入关键字" /></div>
+                        <div class="col-md-2"><input type="date" name="Time" class="form-control" placeholder="发布日期" /></div>
+                        <div class="col-md-2"><input type="submit" name="data" class="btn" style="background-color:#97c8ff;color:white" value="查询" /></div>
+                        <img src="~/icons/ajax-loader.gif" id="loadingImg" style="display:none" />
+                    }
+
+
+
+                </div>
+            </div>
+            <div id="Notice">
+                <table id="table_id" class="display">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in ViewBag.NList)
+                        {
+                            @*<div class="row">
+                                    <div class="col-md-6"> <a href="~/SNotice/Detail?id=@item.NoticeID">@item.Title</a></div>
+                                    <div class="col-md-2">@item.Time</div>
+                                </div>
+                                <hr />*@
+                            <tr>
+                                <td><a href="~/SNotice/Detail?id=@item.NoticeID" id="notice">@item.Title</a></td>
+                                <td>@item.Time</td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

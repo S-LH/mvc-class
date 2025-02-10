@@ -1,0 +1,957 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B118CC29-A6A6-424A-AFE6-9AC85ED46A23}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>奈班级学生管理系统</RootNamespace>
+    <AssemblyName>奈班级学生管理系统</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress>
+    </Use64BitIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Alipay, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Alipay.2.0.0\lib\net35\Alipay.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.9\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.3.3.11, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.3.3\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Client, Version=2.4.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.4.3\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.4.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.4.3\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Owin, Version=1.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Owin.1.2.2\lib\net45\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.4.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.4.3\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.5.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.6\lib\net45\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.5.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.6\lib\net45\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.5.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.6\lib\net45\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.5.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.6\lib\net45\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.9\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.9\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Vincent.AutoAuthCode">
+      <HintPath>..\..\..\学长文件\学长的\新建文件夹 (3)\毕业设计作品\毕业项目作品\Vincent.AutoAuthCode\Vincent.AutoAuthCode.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="ChatHub.cs" />
+    <Compile Include="Controllers\ChatController.cs" />
+    <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\EchartController.cs" />
+    <Compile Include="Controllers\NoPermissionRequiredAttribute.cs" />
+    <Compile Include="Controllers\QQController.cs" />
+    <Compile Include="Controllers\SClassController.cs" />
+    <Compile Include="Controllers\SCourseController.cs" />
+    <Compile Include="Controllers\SGradeController.cs" />
+    <Compile Include="Controllers\SHomeController.cs" />
+    <Compile Include="Controllers\SNoticeController.cs" />
+    <Compile Include="Controllers\SStudentController.cs" />
+    <Compile Include="Controllers\TeacherController.cs" />
+    <Compile Include="Controllers\TGradeController.cs" />
+    <Compile Include="Controllers\TNoticesController.cs" />
+    <Compile Include="Controllers\TstudentController.cs" />
+    <Compile Include="Controllers\VerifyCode.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="logic\ImportExcel.cs" />
+    <Compile Include="Models\Class.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Course.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Grade.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Json.cs" />
+    <Compile Include="Models\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Notice.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PayTable.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Student.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Teacher.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Wihelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PZ.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\animate.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\index.js" />
+    <Content Include="Content\css\index.css" />
+    <Content Include="Content\css\materialdesignicons.min.css" />
+    <Content Include="Content\css\pagedlistmvc.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\admin.css" />
+    <Content Include="Content\materialdesignicons.min.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\icon.css" />
+    <Content Include="DataTables-1.10.21\examples\advanced_init\column_render.html" />
+    <Content Include="DataTables-1.10.21\examples\advanced_init\complex_header.html" />
+    <Content Include="DataTables-1.10.21\examples\advanced_init\defaults.html" />
+    <Content Include="DataTables-1.10.21\examples\advanced_init\dom_multiple_elements.html" />
+    <Content Include="DataTables-1.10.21\examples\advanced_init\dom_toolbar.html" />
+    <Content Include="DataTables-1.10.21\examples\advanced_init\dt_events.html" />
+    <Content Include="DataTables-1.10.21\examples\advanced_init\events_live.html" />
+    <Content Include="DataTables-1.10.21\examples\advanced_init\footer_callback.html" />
+    <Content Include="DataTables-1.10.21\examples\advanced_init\html5-data-attributes.html" />
+    <Content Include="DataTables-1.10.21\examples\advanced_init\html5-data-options.html" />
+    <Content Include="DataTables-1.10.21\examples\advanced_init\index.html" />
+    <Content Include="DataTables-1.10.21\examples\advanced_init\language_file.html" />
+    <Content Include="DataTables-1.10.21\examples\advanced_init\length_menu.html" />
+    <Content Include="DataTables-1.10.21\examples\advanced_init\object_dom_read.html" />
+    <Content Include="DataTables-1.10.21\examples\advanced_init\row_callback.html" />
+    <Content Include="DataTables-1.10.21\examples\advanced_init\row_grouping.html" />
+    <Content Include="DataTables-1.10.21\examples\advanced_init\sort_direction_control.html" />
+    <Content Include="DataTables-1.10.21\examples\ajax\custom_data_flat.html" />
+    <Content Include="DataTables-1.10.21\examples\ajax\custom_data_property.html" />
+    <Content Include="DataTables-1.10.21\examples\ajax\data\arrays.txt" />
+    <Content Include="DataTables-1.10.21\examples\ajax\data\arrays_custom_prop.txt" />
+    <Content Include="DataTables-1.10.21\examples\ajax\data\arrays_subobjects.txt" />
+    <Content Include="DataTables-1.10.21\examples\ajax\data\data_10k.txt" />
+    <Content Include="DataTables-1.10.21\examples\ajax\data\data_1k.txt" />
+    <Content Include="DataTables-1.10.21\examples\ajax\data\data_50k.txt" />
+    <Content Include="DataTables-1.10.21\examples\ajax\data\data_5k.txt" />
+    <Content Include="DataTables-1.10.21\examples\ajax\data\objects.txt" />
+    <Content Include="DataTables-1.10.21\examples\ajax\data\objects_deep.txt" />
+    <Content Include="DataTables-1.10.21\examples\ajax\data\objects_root_array.txt" />
+    <Content Include="DataTables-1.10.21\examples\ajax\data\objects_salary.txt" />
+    <Content Include="DataTables-1.10.21\examples\ajax\data\objects_subarrays.txt" />
+    <Content Include="DataTables-1.10.21\examples\ajax\data\orthogonal.txt" />
+    <Content Include="DataTables-1.10.21\examples\ajax\deep.html" />
+    <Content Include="DataTables-1.10.21\examples\ajax\defer_render.html" />
+    <Content Include="DataTables-1.10.21\examples\ajax\index.html" />
+    <Content Include="DataTables-1.10.21\examples\ajax\null_data_source.html" />
+    <Content Include="DataTables-1.10.21\examples\ajax\objects.html" />
+    <Content Include="DataTables-1.10.21\examples\ajax\objects_subarrays.html" />
+    <Content Include="DataTables-1.10.21\examples\ajax\orthogonal-data.html" />
+    <Content Include="DataTables-1.10.21\examples\ajax\simple.html" />
+    <Content Include="DataTables-1.10.21\examples\api\add_row.html" />
+    <Content Include="DataTables-1.10.21\examples\api\api_in_init.html" />
+    <Content Include="DataTables-1.10.21\examples\api\counter_columns.html" />
+    <Content Include="DataTables-1.10.21\examples\api\form.html" />
+    <Content Include="DataTables-1.10.21\examples\api\highlight.html" />
+    <Content Include="DataTables-1.10.21\examples\api\index.html" />
+    <Content Include="DataTables-1.10.21\examples\api\multi_filter.html" />
+    <Content Include="DataTables-1.10.21\examples\api\multi_filter_select.html" />
+    <Content Include="DataTables-1.10.21\examples\api\regex.html" />
+    <Content Include="DataTables-1.10.21\examples\api\row_details.html" />
+    <Content Include="DataTables-1.10.21\examples\api\select_row.html" />
+    <Content Include="DataTables-1.10.21\examples\api\select_single_row.html" />
+    <Content Include="DataTables-1.10.21\examples\api\show_hide.html" />
+    <Content Include="DataTables-1.10.21\examples\api\tabs_and_scrolling.html" />
+    <Content Include="DataTables-1.10.21\examples\basic_init\alt_pagination.html" />
+    <Content Include="DataTables-1.10.21\examples\basic_init\comma-decimal.html" />
+    <Content Include="DataTables-1.10.21\examples\basic_init\complex_header.html" />
+    <Content Include="DataTables-1.10.21\examples\basic_init\data_rendering.html" />
+    <Content Include="DataTables-1.10.21\examples\basic_init\dom.html" />
+    <Content Include="DataTables-1.10.21\examples\basic_init\filter_only.html" />
+    <Content Include="DataTables-1.10.21\examples\basic_init\flexible_width.html" />
+    <Content Include="DataTables-1.10.21\examples\basic_init\hidden_columns.html" />
+    <Content Include="DataTables-1.10.21\examples\basic_init\index.html" />
+    <Content Include="DataTables-1.10.21\examples\basic_init\language.html" />
+    <Content Include="DataTables-1.10.21\examples\basic_init\multiple_tables.html" />
+    <Content Include="DataTables-1.10.21\examples\basic_init\multi_col_sort.html" />
+    <Content Include="DataTables-1.10.21\examples\basic_init\scroll_x.html" />
+    <Content Include="DataTables-1.10.21\examples\basic_init\scroll_xy.html" />
+    <Content Include="DataTables-1.10.21\examples\basic_init\scroll_y.html" />
+    <Content Include="DataTables-1.10.21\examples\basic_init\scroll_y_dynamic.html" />
+    <Content Include="DataTables-1.10.21\examples\basic_init\state_save.html" />
+    <Content Include="DataTables-1.10.21\examples\basic_init\table_sorting.html" />
+    <Content Include="DataTables-1.10.21\examples\basic_init\zero_configuration.html" />
+    <Content Include="DataTables-1.10.21\examples\data_sources\ajax.html" />
+    <Content Include="DataTables-1.10.21\examples\data_sources\dom.html" />
+    <Content Include="DataTables-1.10.21\examples\data_sources\index.html" />
+    <Content Include="DataTables-1.10.21\examples\data_sources\js_array.html" />
+    <Content Include="DataTables-1.10.21\examples\data_sources\server_side.html" />
+    <Content Include="DataTables-1.10.21\examples\index.html" />
+    <Content Include="DataTables-1.10.21\examples\plug-ins\api.html" />
+    <Content Include="DataTables-1.10.21\examples\plug-ins\dom_sort.html" />
+    <Content Include="DataTables-1.10.21\examples\plug-ins\index.html" />
+    <Content Include="DataTables-1.10.21\examples\plug-ins\range_filtering.html" />
+    <Content Include="DataTables-1.10.21\examples\plug-ins\sorting_auto.html" />
+    <Content Include="DataTables-1.10.21\examples\plug-ins\sorting_manual.html" />
+    <Content Include="DataTables-1.10.21\examples\resources\demo.css" />
+    <Content Include="DataTables-1.10.21\examples\resources\demo.js" />
+    <Content Include="DataTables-1.10.21\examples\resources\details_close.png" />
+    <Content Include="DataTables-1.10.21\examples\resources\details_open.png" />
+    <Content Include="DataTables-1.10.21\examples\resources\examples.php" />
+    <Content Include="DataTables-1.10.21\examples\resources\syntax\shCore.css" />
+    <Content Include="DataTables-1.10.21\examples\resources\syntax\shCore.js" />
+    <Content Include="DataTables-1.10.21\examples\server_side\custom_vars.html" />
+    <Content Include="DataTables-1.10.21\examples\server_side\defer_loading.html" />
+    <Content Include="DataTables-1.10.21\examples\server_side\ids.html" />
+    <Content Include="DataTables-1.10.21\examples\server_side\index.html" />
+    <Content Include="DataTables-1.10.21\examples\server_side\jsonp.html" />
+    <Content Include="DataTables-1.10.21\examples\server_side\object_data.html" />
+    <Content Include="DataTables-1.10.21\examples\server_side\pipeline.html" />
+    <Content Include="DataTables-1.10.21\examples\server_side\post.html" />
+    <Content Include="DataTables-1.10.21\examples\server_side\row_details.html" />
+    <Content Include="DataTables-1.10.21\examples\server_side\scripts\firebird.sql" />
+    <Content Include="DataTables-1.10.21\examples\server_side\scripts\ids-arrays.php" />
+    <Content Include="DataTables-1.10.21\examples\server_side\scripts\ids-objects.php" />
+    <Content Include="DataTables-1.10.21\examples\server_side\scripts\jsonp.php" />
+    <Content Include="DataTables-1.10.21\examples\server_side\scripts\mysql.sql" />
+    <Content Include="DataTables-1.10.21\examples\server_side\scripts\objects.php" />
+    <Content Include="DataTables-1.10.21\examples\server_side\scripts\oracle.sql" />
+    <Content Include="DataTables-1.10.21\examples\server_side\scripts\post.php" />
+    <Content Include="DataTables-1.10.21\examples\server_side\scripts\postgres.sql" />
+    <Content Include="DataTables-1.10.21\examples\server_side\scripts\server_processing.php" />
+    <Content Include="DataTables-1.10.21\examples\server_side\scripts\sqlite.sql" />
+    <Content Include="DataTables-1.10.21\examples\server_side\scripts\sqlserver.sql" />
+    <Content Include="DataTables-1.10.21\examples\server_side\scripts\ssp.class.php" />
+    <Content Include="DataTables-1.10.21\examples\server_side\select_rows.html" />
+    <Content Include="DataTables-1.10.21\examples\server_side\simple.html" />
+    <Content Include="DataTables-1.10.21\examples\styling\bootstrap.html" />
+    <Content Include="DataTables-1.10.21\examples\styling\bootstrap4.html" />
+    <Content Include="DataTables-1.10.21\examples\styling\cell-border.html" />
+    <Content Include="DataTables-1.10.21\examples\styling\compact.html" />
+    <Content Include="DataTables-1.10.21\examples\styling\display.html" />
+    <Content Include="DataTables-1.10.21\examples\styling\foundation.html" />
+    <Content Include="DataTables-1.10.21\examples\styling\hover.html" />
+    <Content Include="DataTables-1.10.21\examples\styling\index.html" />
+    <Content Include="DataTables-1.10.21\examples\styling\jqueryUI.html" />
+    <Content Include="DataTables-1.10.21\examples\styling\material.html" />
+    <Content Include="DataTables-1.10.21\examples\styling\no-classes.html" />
+    <Content Include="DataTables-1.10.21\examples\styling\order-column.html" />
+    <Content Include="DataTables-1.10.21\examples\styling\row-border.html" />
+    <Content Include="DataTables-1.10.21\examples\styling\semanticui.html" />
+    <Content Include="DataTables-1.10.21\examples\styling\stripe.html" />
+    <Content Include="DataTables-1.10.21\examples\styling\uikit.html" />
+    <Content Include="DataTables-1.10.21\jquery.dataTables.min.css" />
+    <Content Include="DataTables-1.10.21\jquery.dataTables.min.js" />
+    <Content Include="DataTables-1.10.21\license.txt" />
+    <Content Include="DataTables-1.10.21\media\css\dataTables.bootstrap.css" />
+    <Content Include="DataTables-1.10.21\media\css\dataTables.bootstrap.min.css" />
+    <Content Include="DataTables-1.10.21\media\css\dataTables.bootstrap4.css" />
+    <Content Include="DataTables-1.10.21\media\css\dataTables.bootstrap4.min.css" />
+    <Content Include="DataTables-1.10.21\media\css\dataTables.dataTables.css" />
+    <Content Include="DataTables-1.10.21\media\css\dataTables.dataTables.min.css" />
+    <Content Include="DataTables-1.10.21\media\css\dataTables.foundation.css" />
+    <Content Include="DataTables-1.10.21\media\css\dataTables.foundation.min.css" />
+    <Content Include="DataTables-1.10.21\media\css\dataTables.jqueryui.css" />
+    <Content Include="DataTables-1.10.21\media\css\dataTables.jqueryui.min.css" />
+    <Content Include="DataTables-1.10.21\media\css\dataTables.material.css" />
+    <Content Include="DataTables-1.10.21\media\css\dataTables.material.min.css" />
+    <Content Include="DataTables-1.10.21\media\css\dataTables.semanticui.css" />
+    <Content Include="DataTables-1.10.21\media\css\dataTables.semanticui.min.css" />
+    <Content Include="DataTables-1.10.21\media\css\dataTables.uikit.css" />
+    <Content Include="DataTables-1.10.21\media\css\dataTables.uikit.min.css" />
+    <Content Include="DataTables-1.10.21\media\css\jquery.dataTables.css" />
+    <Content Include="DataTables-1.10.21\media\css\jquery.dataTables.min.css" />
+    <Content Include="DataTables-1.10.21\media\css\jquery.dataTables_themeroller.css" />
+    <Content Include="DataTables-1.10.21\media\images\favicon.ico" />
+    <Content Include="DataTables-1.10.21\media\images\sort_asc.png" />
+    <Content Include="DataTables-1.10.21\media\images\sort_asc_disabled.png" />
+    <Content Include="DataTables-1.10.21\media\images\sort_both.png" />
+    <Content Include="DataTables-1.10.21\media\images\sort_desc.png" />
+    <Content Include="DataTables-1.10.21\media\images\sort_desc_disabled.png" />
+    <Content Include="DataTables-1.10.21\media\js\dataTables.bootstrap.js" />
+    <Content Include="DataTables-1.10.21\media\js\dataTables.bootstrap.min.js" />
+    <Content Include="DataTables-1.10.21\media\js\dataTables.bootstrap4.js" />
+    <Content Include="DataTables-1.10.21\media\js\dataTables.bootstrap4.min.js" />
+    <Content Include="DataTables-1.10.21\media\js\dataTables.dataTables.js" />
+    <Content Include="DataTables-1.10.21\media\js\dataTables.dataTables.min.js" />
+    <Content Include="DataTables-1.10.21\media\js\dataTables.foundation.js" />
+    <Content Include="DataTables-1.10.21\media\js\dataTables.foundation.min.js" />
+    <Content Include="DataTables-1.10.21\media\js\dataTables.jqueryui.js" />
+    <Content Include="DataTables-1.10.21\media\js\dataTables.jqueryui.min.js" />
+    <Content Include="DataTables-1.10.21\media\js\dataTables.legacy.js" />
+    <Content Include="DataTables-1.10.21\media\js\dataTables.legacy.min.js" />
+    <Content Include="DataTables-1.10.21\media\js\dataTables.material.js" />
+    <Content Include="DataTables-1.10.21\media\js\dataTables.material.min.js" />
+    <Content Include="DataTables-1.10.21\media\js\dataTables.semanticui.js" />
+    <Content Include="DataTables-1.10.21\media\js\dataTables.semanticui.min.js" />
+    <Content Include="DataTables-1.10.21\media\js\dataTables.uikit.js" />
+    <Content Include="DataTables-1.10.21\media\js\dataTables.uikit.min.js" />
+    <Content Include="DataTables-1.10.21\media\js\jquery.dataTables.js" />
+    <Content Include="DataTables-1.10.21\media\js\jquery.dataTables.min.js" />
+    <Content Include="DataTables-1.10.21\media\js\jquery.js" />
+    <Content Include="EChart\china.js" />
+    <Content Include="EChart\echarts-wordcloud.min.js" />
+    <Content Include="EChart\echarts.min.js" />
+    <Content Include="EChart\jquery-3.4.1.min.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="icons\bianji.png" />
+    <Content Include="icons\bianji_1.png" />
+    <Content Include="icons\bianpinghuatubiaosheji-.png" />
+    <Content Include="icons\daochu.png" />
+    <Content Include="icons\daorubiaoge.png" />
+    <Content Include="icons\dianhua.png" />
+    <Content Include="icons\fl-jia.png" />
+    <Content Include="icons\gender.png" />
+    <Content Include="icons\jiahao.png" />
+    <Content Include="icons\jiahao_1.png" />
+    <Content Include="icons\jianhao.png" />
+    <Content Include="icons\jurassic_export-form.svg" />
+    <Content Include="icons\jurassic_import-form.svg" />
+    <Content Include="icons\nan.png" />
+    <Content Include="icons\nan_1.png" />
+    <Content Include="icons\nan_2.png" />
+    <Content Include="icons\nv.png" />
+    <Content Include="icons\nv_1.png" />
+    <Content Include="icons\shanchu.png" />
+    <Content Include="icons\shangzhankai.png" />
+    <Content Include="icons\sushe.png" />
+    <Content Include="icons\tianjia-2.png" />
+    <Content Include="icons\tianjiayonghutianchong.png" />
+    <Content Include="icons\tongji.png" />
+    <Content Include="icons\tongji_1.png" />
+    <Content Include="icons\tuichu.svg" />
+    <Content Include="icons\xiazhankai.png" />
+    <Content Include="icons\xiugai.png" />
+    <Content Include="icons\xiugaixiamian.png" />
+    <Content Include="icons\xuanzeqizhankai.png" />
+    <Content Include="icons\xuehaoguanli.png" />
+    <Content Include="icons\yonghu.svg" />
+    <Content Include="icons\ziyuan.png" />
+    <Content Include="icons\专业.png" />
+    <Content Include="icons\地址.jpg" />
+    <Content Include="icons\头像.png" />
+    <Content Include="icons\电话.jpg" />
+    <Content Include="icons\课程.jpg" />
+    <Content Include="icons\课程.png" />
+    <Content Include="icons\辅导员.png" />
+    <Content Include="jsCSSImg\46_0c881286aa9324c183dff0c81035a7d8.png" />
+    <Content Include="jsCSSImg\Content\Bootom.html" />
+    <Content Include="jsCSSImg\Content\DataTablesExt.js" />
+    <Content Include="jsCSSImg\Content\main.css" />
+    <Content Include="jsCSSImg\Content\sharestyle.css" />
+    <Content Include="jsCSSImg\Content\Site.css" />
+    <Content Include="jsCSSImg\Content\themes\base\jquery-ui.css" />
+    <Content Include="jsCSSImg\Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="jsCSSImg\Content\themes\base\jquery.ui.all.css" />
+    <Content Include="jsCSSImg\Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="jsCSSImg\Content\themes\base\jquery.ui.base.css" />
+    <Content Include="jsCSSImg\Content\themes\base\jquery.ui.button.css" />
+    <Content Include="jsCSSImg\Content\themes\base\jquery.ui.core.css" />
+    <Content Include="jsCSSImg\Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="jsCSSImg\Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="jsCSSImg\Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="jsCSSImg\Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="jsCSSImg\Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="jsCSSImg\Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="jsCSSImg\Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="jsCSSImg\Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="jsCSSImg\Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="jsCSSImg\Images\closeico2.png" />
+    <Content Include="jsCSSImg\Images\f_03.png" />
+    <Content Include="jsCSSImg\Images\g.png" />
+    <Content Include="jsCSSImg\Images\h_11.png" />
+    <Content Include="jsCSSImg\Images\h_12.png" />
+    <Content Include="jsCSSImg\Images\icon7.png" />
+    <Content Include="jsCSSImg\Images\icon_1.png" />
+    <Content Include="jsCSSImg\Images\icon_11.png" />
+    <Content Include="jsCSSImg\Images\icon_12.png" />
+    <Content Include="jsCSSImg\Images\icon_13.png" />
+    <Content Include="jsCSSImg\Images\icon_14.gif" />
+    <Content Include="jsCSSImg\Images\icon_14.png" />
+    <Content Include="jsCSSImg\Images\icon_15.png" />
+    <Content Include="jsCSSImg\Images\icon_16.png" />
+    <Content Include="jsCSSImg\Images\icon_17.png" />
+    <Content Include="jsCSSImg\Images\icon_18.png" />
+    <Content Include="jsCSSImg\Images\icon_19.png" />
+    <Content Include="jsCSSImg\Images\icon_2.png" />
+    <Content Include="jsCSSImg\Images\icon_20.png" />
+    <Content Include="jsCSSImg\Images\icon_21.png" />
+    <Content Include="jsCSSImg\Images\icon_3.png" />
+    <Content Include="jsCSSImg\Images\icon_4.png" />
+    <Content Include="jsCSSImg\Images\icon_5.png" />
+    <Content Include="jsCSSImg\Images\icon_6.png" />
+    <Content Include="jsCSSImg\Images\icon_7.png" />
+    <Content Include="jsCSSImg\Images\icon_8.png" />
+    <Content Include="jsCSSImg\Images\icon_9.png" />
+    <Content Include="jsCSSImg\Images\loginbg.png" />
+    <Content Include="jsCSSImg\Images\mmexport1655381252351.mp4" />
+    <Content Include="jsCSSImg\Images\mmexport1655381646980.jpg" />
+    <Content Include="jsCSSImg\Images\orderlist.png" />
+    <Content Include="jsCSSImg\Images\photo.png" />
+    <Content Include="jsCSSImg\Images\QQ图片20220616195500.gif" />
+    <Content Include="jsCSSImg\Images\sidebar-on.gif" />
+    <Content Include="jsCSSImg\Images\tt.jpg" />
+    <Content Include="jsCSSImg\Images\奈班级1.jpg" />
+    <Content Include="jsCSSImg\Images\奈班级2.jpg" />
+    <Content Include="jsCSSImg\Images\奈班级3.jpg" />
+    <Content Include="jsCSSImg\Images\奈班级图标.ico" />
+    <Content Include="jsCSSImg\Images\奈班级图片.jpg" />
+    <Content Include="jsCSSImg\Images\奈班级管理系统.jpg" />
+    <Content Include="jsCSSImg\Images\奈班级（透明）.png" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\context\images\sample.png" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\context\themes\base\images\s.png" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\context\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\context\themes\base\images\ui-bg_flat_55_fbec88_40x100.png" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\context\themes\base\images\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\context\themes\base\images\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\context\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\context\themes\base\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\context\themes\base\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\context\themes\base\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\context\themes\base\images\ui-icons_217bc0_256x240.png" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\context\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\context\themes\base\images\ui-icons_469bdd_256x240.png" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\context\themes\base\images\ui-icons_6da8d5_256x240.png" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\context\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\context\themes\base\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\context\themes\base\images\ui-icons_f9bd01_256x240.png" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\context\themes\base\jquery-ui.css" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\index.htm" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\scripts\jquery-ui.js" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\scripts\jquery.cleverTabs.js" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\scripts\jquery.contextMenu.js" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\scripts\jquery.js" />
+    <Content Include="jsCSSImg\Lib\CleverTabs\tmp.htm" />
+    <Content Include="jsCSSImg\Lib\DataTables-1.10.6\license.txt" />
+    <Content Include="jsCSSImg\Lib\DataTables-1.10.6\media\css\jquery.dataTables.css" />
+    <Content Include="jsCSSImg\Lib\DataTables-1.10.6\media\css\jquery.dataTables.min.css" />
+    <Content Include="jsCSSImg\Lib\DataTables-1.10.6\media\css\jquery.dataTablesNew.css" />
+    <Content Include="jsCSSImg\Lib\DataTables-1.10.6\media\css\jquery.dataTables_themeroller.css" />
+    <Content Include="jsCSSImg\Lib\DataTables-1.10.6\media\images\favicon.ico" />
+    <Content Include="jsCSSImg\Lib\DataTables-1.10.6\media\images\sort_asc.png" />
+    <Content Include="jsCSSImg\Lib\DataTables-1.10.6\media\images\sort_asc_disabled.png" />
+    <Content Include="jsCSSImg\Lib\DataTables-1.10.6\media\images\sort_both.png" />
+    <Content Include="jsCSSImg\Lib\DataTables-1.10.6\media\images\sort_desc.png" />
+    <Content Include="jsCSSImg\Lib\DataTables-1.10.6\media\images\sort_desc_disabled.png" />
+    <Content Include="jsCSSImg\Lib\DataTables-1.10.6\media\js\jquery.dataTables.js" />
+    <Content Include="jsCSSImg\Lib\DataTables-1.10.6\media\js\jquery.dataTables.min.js" />
+    <Content Include="jsCSSImg\Lib\DataTables-1.10.6\media\js\jquery.js" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\lhgdialog.min.js" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\iblue.css" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\iblue\iblue_s.png" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\iblue\iblue_s2.png" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\iblue\ie6\ui_b.png" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\iblue\ie6\ui_l.png" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\iblue\ie6\ui_lb.png" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\iblue\ie6\ui_lt.png" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\iblue\ie6\ui_lt2.png" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\iblue\ie6\ui_r.png" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\iblue\ie6\ui_rb.png" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\iblue\ie6\ui_rt.png" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\iblue\ie6\ui_rt2.png" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\iblue\ie6\ui_t.png" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\iblue\ie6\ui_t2.png" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\icons\32X32\fail.png" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\icons\32X32\hits.png" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\icons\32X32\i.png" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\icons\32X32\succ.png" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\icons\alert.gif" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\icons\confirm.gif" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\icons\discuz_bg.gif" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\icons\error.gif" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\icons\face-sad.png" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\icons\face-smile.png" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\icons\gb_tip_layer.png" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\icons\gb_tip_layer_ie6.png" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\icons\lhgcore.gif" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\icons\loading.gif" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\icons\prompt.gif" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\icons\success.gif" />
+    <Content Include="jsCSSImg\Lib\lhgdialog\skins\icons\tips.gif" />
+    <Content Include="jsCSSImg\Lib\My97DatePicker\calendar.js" />
+    <Content Include="jsCSSImg\Lib\My97DatePicker\lang\en.js" />
+    <Content Include="jsCSSImg\Lib\My97DatePicker\lang\zh-cn.js" />
+    <Content Include="jsCSSImg\Lib\My97DatePicker\lang\zh-tw.js" />
+    <Content Include="jsCSSImg\Lib\My97DatePicker\skin\datePicker.gif" />
+    <Content Include="jsCSSImg\Lib\My97DatePicker\skin\default\datepicker.css" />
+    <Content Include="jsCSSImg\Lib\My97DatePicker\skin\default\img.gif" />
+    <Content Include="jsCSSImg\Lib\My97DatePicker\skin\WdatePicker.css" />
+    <Content Include="jsCSSImg\Lib\My97DatePicker\skin\whyGreen\bg.jpg" />
+    <Content Include="jsCSSImg\Lib\My97DatePicker\skin\whyGreen\datepicker.css" />
+    <Content Include="jsCSSImg\Lib\My97DatePicker\skin\whyGreen\img.gif" />
+    <Content Include="jsCSSImg\Lib\My97DatePicker\WdatePicker.js" />
+    <Content Include="jsCSSImg\Scripts\bootstrap.min.js" />
+    <Content Include="DataTables-1.10.21\Contributing.md" />
+    <Content Include="DataTables-1.10.21\examples\resources\syntax\Syntax Highlighter license" />
+    <Content Include="DataTables-1.10.21\media\images\Sorting icons.psd" />
+    <Content Include="DataTables-1.10.21\Readme.md" />
+    <None Include=".bin\git.cmd" />
+    <None Include=".bin\node.cmd" />
+    <None Include=".bin\npm.cmd" />
+    <None Include="jsCSSImg\Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="jsCSSImg\Scripts\jquery-1.7.1.js" />
+    <Content Include="jsCSSImg\Scripts\jquery-1.7.1.min.js" />
+    <Content Include="jsCSSImg\Scripts\jquery-1.8.3.min.js" />
+    <Content Include="jsCSSImg\Scripts\jquery-ui-1.8.20.js" />
+    <Content Include="jsCSSImg\Scripts\jquery-ui-1.8.20.min.js" />
+    <Content Include="jsCSSImg\Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="jsCSSImg\Scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="jsCSSImg\Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="jsCSSImg\Scripts\jquery.validate.js" />
+    <Content Include="jsCSSImg\Scripts\jquery.validate.min.js" />
+    <Content Include="jsCSSImg\Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="jsCSSImg\Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="jsCSSImg\Scripts\knockout-2.1.0.debug.js" />
+    <Content Include="jsCSSImg\Scripts\knockout-2.1.0.js" />
+    <Content Include="jsCSSImg\Scripts\modernizr-2.5.3.js" />
+    <None Include="jsCSSImg\Scripts\_references.js" />
+    <Content Include="layui\css\layui.css" />
+    <Content Include="layui\css\modules\code.css" />
+    <Content Include="layui\css\modules\laydate\default\laydate.css" />
+    <Content Include="layui\css\modules\layer\default\icon-ext.png" />
+    <Content Include="layui\css\modules\layer\default\icon.png" />
+    <Content Include="layui\css\modules\layer\default\layer.css" />
+    <Content Include="layui\css\modules\layer\default\loading-0.gif" />
+    <Content Include="layui\css\modules\layer\default\loading-1.gif" />
+    <Content Include="layui\css\modules\layer\default\loading-2.gif" />
+    <Content Include="layui\font\iconfont.svg" />
+    <Content Include="layui\layui.js" />
+    <Content Include="LoginContent\animation.css" />
+    <Content Include="LoginContent\aso - 复制.js" />
+    <Content Include="LoginContent\commonFooter.js" />
+    <Content Include="LoginContent\DL\login.js" />
+    <Content Include="LoginContent\DL\basic - 复制%282%29.css" />
+    <Content Include="LoginContent\DL\basic - 复制%283%29.css" />
+    <Content Include="LoginContent\DL\basic - 复制%284%29.css" />
+    <Content Include="LoginContent\DL\service.js" />
+    <Content Include="LoginContent\DL\base64.js" />
+    <Content Include="LoginContent\DL\bootstrap-multiselect.js" />
+    <Content Include="LoginContent\DL\iconfont.css" />
+    <Content Include="LoginContent\DL\basic.css" />
+    <Content Include="LoginContent\DL\login.css" />
+    <Content Include="LoginContent\DL\selCity.css" />
+    <Content Include="LoginContent\DL\smartadmin-production.css" />
+    <Content Include="LoginContent\DL\font-awesome.css" />
+    <Content Include="LoginContent\DL\loginPreCheck.js" />
+    <Content Include="LoginContent\DL\validate.js" />
+    <Content Include="LoginContent\DL\SmartNotification.js" />
+    <Content Include="LoginContent\DL\Popt.js" />
+    <Content Include="LoginContent\DL\cityJson.js" />
+    <Content Include="LoginContent\DL\citySet.js" />
+    <Content Include="LoginContent\DL\apiHelper.js" />
+    <Content Include="LoginContent\indexAnimation.js" />
+    <Content Include="LoginContent\ajaxCommon.js" />
+    <Content Include="LoginContent\validate.js" />
+    <Content Include="LoginContent\commonHeaderIndex.js" />
+    <Content Include="LoginContent\boots.css" />
+    <Content Include="LoginContent\aso.css" />
+    <Content Include="LoginContent\aso.js" />
+    <Content Include="LoginContent\index.js" />
+    <Content Include="LoginContent\comm.js" />
+    <Content Include="LoginContent\common.css" />
+    <Content Include="LoginContent\common.js" />
+    <Content Include="LoginContent\index-flort.css" />
+    <Content Include="LoginContent\index-foot.css" />
+    <Content Include="LoginContent\index-free.css" />
+    <Content Include="LoginContent\index.css" />
+    <Content Include="LoginContent\index_conter.css" />
+    <Content Include="LoginContent\index_main_content.js" />
+    <Content Include="LoginContent\jquery.SuperSlide.2.1.1.js" />
+    <Content Include="LoginContent\mobile.js" />
+    <Content Include="LoginContent\spinkit.css" />
+    <Content Include="LoginContent\spinkit.js" />
+    <Content Include="LoginContent\sub.css" />
+    <Content Include="LoginContent\template.js" />
+    <Content Include="Models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\tsparticles.preset.bigCircles.bundle.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="jsCSSImg\Lib\DataTables-1.10.6\Contributing.md" />
+    <Content Include="jsCSSImg\Lib\DataTables-1.10.6\media\images\Sorting icons.psd" />
+    <Content Include="jsCSSImg\Lib\DataTables-1.10.6\Readme.md" />
+    <Content Include="layui\font\iconfont.eot" />
+    <Content Include="layui\font\iconfont.ttf" />
+    <Content Include="layui\font\iconfont.woff" />
+    <Content Include="layui\font\iconfont.woff2" />
+    <Content Include="Properties\DataSources\System.Data.DataSet.datasource" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.3.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.3.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="SCss\admin.css" />
+    <Content Include="SCss\debug.css" />
+    <Content Include="SCss\icon.css" />
+    <Content Include="SCss\index.css" />
+    <Content Include="SCss\layui.css" />
+    <Content Include="SCss\link.css" />
+    <Content Include="SCss\不合格品处理记录.png" />
+    <Content Include="SCss\合格.png" />
+    <Content Include="SCss\排名.png" />
+    <Content Include="SCss\排名1.png" />
+    <Content Include="SImg\btn-bg-active.jpg" />
+    <Content Include="SImg\btn-bg.jpg" />
+    <Content Include="SImg\circle-active.png" />
+    <Content Include="SImg\circle.png" />
+    <Content Include="SImg\ling-bg.jpg" />
+    <Content Include="SImg\success.png" />
+    <Content Include="SJs\bootstrap.min.js" />
+    <Content Include="SJs\china.js" />
+    <Content Include="SJs\echarts.min.js" />
+    <Content Include="SJs\jquery-1.8.3.min.js" />
+    <Content Include="SJs\layui.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Teacher\Index.cshtml" />
+    <Content Include="Views\Teacher\Top.cshtml" />
+    <Content Include="Views\Teacher\Left.cshtml" />
+    <Content Include="Views\Teacher\Right.cshtml" />
+    <Content Include="Views\Teacher\Bootom.cshtml" />
+    <Content Include="Views\Teacher\Login.cshtml" />
+    <Content Include="Views\Teacher\dl.cshtml" />
+    <Content Include="Views\Teacher\wjmm.cshtml" />
+    <Content Include="Views\Courses\Create.cshtml" />
+    <Content Include="Views\Courses\Delete.cshtml" />
+    <Content Include="Views\Courses\Details.cshtml" />
+    <Content Include="Views\Courses\Edit.cshtml" />
+    <Content Include="Views\Courses\Index.cshtml" />
+    <Content Include="Views\Courses\hh.cshtml" />
+    <Content Include="Views\Courses\Login.cshtml" />
+    <Content Include="Views\TStudents\Create.cshtml" />
+    <Content Include="Views\TStudents\Delete.cshtml" />
+    <Content Include="Views\TStudents\Details.cshtml" />
+    <Content Include="Views\TStudents\Edit.cshtml" />
+    <Content Include="Views\TStudents\Index.cshtml" />
+    <Content Include="Views\TStudents\Login.cshtml" />
+    <Content Include="Views\TStudents\T2004.cshtml" />
+    <Content Include="Views\Tstudent\Index.cshtml" />
+    <Content Include="Views\Echart\Echart.cshtml" />
+    <Content Include="Views\Tstudent\Stugl.cshtml" />
+    <Content Include="Views\Tstudent\Sturz.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Views\TNotices\Index.cshtml" />
+    <Content Include="Views\TNotices\List.cshtml" />
+    <Content Include="Views\TNotices\Detail.cshtml" />
+    <Content Include="Views\TNotices\NoticeList.cshtml" />
+    <Content Include="Views\Chat\Chat.cshtml" />
+    <Content Include="Views\Shared\_LayoutChat.cshtml" />
+    <Content Include="Views\SHome\Index.cshtml" />
+    <Content Include="Views\SHome\Bootom.cshtml" />
+    <Content Include="Views\SHome\Left.cshtml" />
+    <Content Include="Views\SHome\Right.cshtml" />
+    <Content Include="Views\SHome\SLogin.cshtml" />
+    <Content Include="Views\SHome\Top.cshtml" />
+    <Content Include="Views\SHome\UpadatePwd.cshtml" />
+    <Content Include="Views\SNotice\SNotice.cshtml" />
+    <Content Include="Views\SNotice\Detail.cshtml" />
+    <Content Include="Views\SNotice\NoticeList.cshtml" />
+    <Content Include="Views\SStudent\Safety.cshtml" />
+    <Content Include="Views\SStudent\Student.cshtml" />
+    <Content Include="Views\TGrade\AddGrade.cshtml" />
+    <Content Include="Views\SGrade\GradeList.cshtml" />
+    <Content Include="Views\SGrade\Grade.cshtml" />
+    <Content Include="Views\Shared\Grade.cshtml" />
+    <Content Include="Views\SGrade\Analyze.cshtml" />
+    <Content Include="Views\SClass\classList.cshtml" />
+    <Content Include="Views\SClass\class.cshtml" />
+    <Content Include="Views\SCourse\SCourse.cshtml" />
+    <Content Include="Views\SCourse\SCourseList.cshtml" />
+    <Content Include="Views\Tstudent\Money.cshtml" />
+    <Content Include="Views\SStudent\Money.cshtml" />
+    <Content Include="Views\Tstudent\MoneyJL.cshtml" />
+    <Content Include="Views\Tstudent\DetailPay.cshtml" />
+    <Content Include="Views\SStudent\App.cshtml" />
+    <Content Include="Views\Chat\ChatStu.cshtml" />
+    <Content Include="Views\QQ\Jubao.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Files\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>64204</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:6425/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

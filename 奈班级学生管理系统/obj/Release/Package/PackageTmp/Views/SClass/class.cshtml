@@ -1,0 +1,68 @@
+﻿
+<link rel="shortcut icon" href="~/jsCSSImg/Images/奈班级图标.ico">
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<link href="~/DataTables-1.10.21/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/DataTables-1.10.21/jquery.dataTables.min.js"></script>
+<script>
+
+
+        $(document).ready(function () {
+            $('#table_id').DataTable({
+                "searching": false, //去掉搜索框方法一
+                "oLanguage": {
+                    "sLengthMenu": "每页显示 _MENU_条",
+                    "sZeroRecords": "没有找到符合条件的数据",
+                    "sProcessing": "&lt;img src=’./loading.gif’ /&gt;",
+                    "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
+                    "sInfoEmpty": "木有记录",
+                    "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
+                    "sSearch": "搜索：",
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": "上一页",
+                        "sNext": "下一页",
+                        "sLast": "尾页",
+
+                    }
+                },
+                "pageLength": 6,
+                "lengthMenu": [6, 12]
+
+            });
+
+
+        });
+
+
+</script>
+<table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>学号</th>
+            <th>手机号</th>
+            <th>地址</th>
+            <th>宿舍号</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in ViewBag.classList as List<奈班级学生管理系统.Models.Student>)
+        {
+
+            <tr>
+                <td>@item.StudentName</td>
+                <td>@item.Sex</td>
+                <td>@item.StudentNum</td>
+                <td>@item.Tell</td>
+                <td>@item.Hometown</td>
+                <td>@item.Dorm</td>
+            </tr>
+
+        }
+    </tbody>
+</table>

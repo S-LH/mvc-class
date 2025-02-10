@@ -1,0 +1,60 @@
+﻿<link href="~/DataTables-1.10.21/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/DataTables-1.10.21/jquery.dataTables.min.js"></script>
+@*<link href="~/DataTables/datatables.min.css" rel="stylesheet" />
+<script src="~/DataTables/datatables.min.js"></script>*@
+<script>
+
+
+    $(document).ready(function () {
+        $('#table_id').DataTable({
+            "searching": false, //去掉搜索框方法一
+            "oLanguage": {
+                "sLengthMenu": "每页显示 _MENU_条",
+                "sZeroRecords": "没有找到符合条件的数据",
+                "sProcessing": "&lt;img src=’./loading.gif’ /&gt;",
+                "sInfo": "当前第 _START_ - _END_ 条　共计 _TOTAL_ 条",
+                "sInfoEmpty": "木有记录",
+                "sInfoFiltered": "(从 _MAX_ 条记录中过滤)",
+                "sSearch": "搜索：",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "前一页",
+                    "sNext": "后一页",
+                    "sLast": "尾页",
+
+                }
+            },
+            "pageLength": 8,
+            "lengthMenu": [8, 16]
+
+        });
+
+
+    });
+
+
+</script>
+<table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in ViewBag.NList)
+        {
+            @*<div class="row">
+                    <div class="col-md-6"> <a href="~/SNotice/Detail?id=@item.NoticeID">@item.Title</a></div>
+                    <div class="col-md-2">@item.Time</div>
+                </div>
+                <hr />*@
+            <tr>
+                <td><a href="~/SNotice/Detail?id=@item.NoticeID">@item.Title</a></td>
+                <td>@item.Time</td>
+            </tr>
+
+        }
+    </tbody>
+</table>

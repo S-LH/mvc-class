@@ -1,0 +1,664 @@
+@charset "utf-8";
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-size: 14px;
+    color: #fff;
+    height: 100%;
+    min-height: 620px;
+    width: 100%;
+    margin: 0;
+    background-color: #fff;
+}
+
+input {
+    font-size: 14px;
+    border: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul, li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+:root {
+    filter: none;
+}
+/*顶部*/
+header, div.main {
+    margin: 0 auto;
+    width: 1000px;
+}
+
+header {
+    height: 125px;
+    position: relative;
+}
+
+@media screen and (max-height: 800px) {
+    header {
+        height: 88px;
+    }
+}
+
+header .headerContent {
+    position: absolute;
+    bottom: 15px;
+    padding-top: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+    header .headerContent .logo {
+        width: 124px;
+        height: 48px;
+    }
+
+    header .headerContent .btnGroup {
+        width: 235px;
+    }
+
+.btnGroup a {
+    color: #707070;
+    margin-left: 45px;
+}
+
+    .btnGroup a:active,
+    .btnGroup a:focus,
+    .btnGroup a:hover {
+        color: #488ffa;
+    }
+
+/*底部链接和copyright*/
+.footer.others {
+    width: 100%;
+    height: 125px;
+    padding-top: 52px;
+    text-align: center;
+    clear: both;
+}
+
+    .footer.others div {
+        margin-bottom: 0;
+        color: #aaa;
+    }
+
+        .footer.others div span {
+            margin: 0 11px;
+            color: #aaa;
+        }
+
+    .footer.others .copyright,
+    .footer.others .copyright a {
+        font-size: 12px;
+        margin-top: 6px;
+        color: #ccc;
+    }
+
+.footer .loginLine {
+    color: #488ffa !important;
+}
+
+/*主体部分*/
+.mainBg {
+    background-image: url(../images/login_images/bg.jpg);
+    background-position: center;
+    /*height: 590px;*/
+    position: relative;
+    min-width: 1000px;
+}
+
+.main .loginLogo {
+    max-height: 79px;
+    width: auto;
+}
+
+.main .leftArea {
+    width: 100%;
+    float: left;
+}
+
+.main .rightArea {
+    float: right;
+    width: 308px;
+}
+
+.login-panel {
+    /*height: 590px;*/
+}
+
+    .login-panel .top {
+        padding-top: 36px;
+        text-align: center;
+    }
+
+    .login-panel .form {
+        margin-top: 7px;
+        background-color: #fff;
+        border-radius: 3px;
+        padding: 25px 20px 5px 20px;
+        font-size: 14px;
+        /* color: #aaa; */
+    }
+
+        .login-panel .form div {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+#secondDiv div {
+    margin-bottom: 12px;
+}
+
+.login-panel .form div.left_right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.panelTitle,
+.noBgButton {
+    color: #488ffa;
+}
+
+.login-panel .form .panelTitle {
+    font-size: 18px;
+}
+
+.login-panel .form .noBgButton {
+    border: 1px solid #488ffa;
+    padding: 6px 12px;
+    border-radius: 3px;
+    background-color: transparent;
+    cursor: pointer
+}
+
+    .login-panel .form .noBgButton:hover,
+    .login-panel .form .noBgButton:focus {
+        background-color: #f5f5f5;
+    }
+
+.verifyInput {
+    width: 155px;
+    padding: 12px 12px 12px 10px;
+}
+
+.noIconInput {
+    width: 100%;
+    padding: 10px;
+}
+
+.iconInput {
+    margin: 8px 0 9px 35px;
+    width: 220px;
+}
+
+.login-panel .form .inputPseudo {
+    height: 40px;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    position: relative;
+}
+
+    .login-panel .form .inputPseudo:focus,
+    .login-panel .form .inputPseudo:hover {
+        border-color: #488ffa;
+    }
+
+    .login-panel .form .inputPseudo.error {
+        color: #ff6666;
+        border-color: #ff6666;
+    }
+
+        .login-panel .form .inputPseudo.error::-webkit-input-placeholder {
+            color: #ff6666;
+        }
+
+.login-panel .form .inputDiv:focus .field-icon,
+.login-panel .form .inputDiv:hover .field-icon {
+    background-color: #488ffa;
+}
+
+.login-panel .form .inputDiv .field-icon {
+    width: 24px;
+    height: 24px;
+    margin-top: 6px;
+    margin-left: 6px;
+    position: absolute;
+    overflow: hidden;
+    background-color: #aaa;
+}
+
+.login-panel .form .linkTo {
+    color: #aaa;
+    cursor: pointer;
+}
+
+    .login-panel .form .linkTo:hover,
+    .login-panel .form .linkTo:focus {
+        color: #488ffa;
+    }
+
+/*tooltip*/
+.jquery-plugin-description {
+    position: absolute;
+    background-image: url(../images/login_images/tips_user.png);
+    width: 95px;
+    height: 42px;
+    line-height: 30px;
+    overflow: hidden;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+}
+
+.error-msg {
+    position: absolute;
+    background-image: url(../images/login_images/tips_error.png);
+    width: 250px;
+    height: 42px;
+    line-height: 30px;
+    overflow: hidden;
+    color: #fff;
+    font-size: 12px;
+    background-size: 250px 42px;
+    text-align: center;
+}
+
+.error-msg2 {
+    position: absolute;
+    background-image: url(../images/login_images/tips_error2.png);
+    width: 362px;
+    height: 42px;
+    line-height: 30px;
+    overflow: hidden;
+    color: #fff;
+    font-size: 12px;
+}
+
+#ieTips {
+    color: #aaa;
+    font-size: 14px;
+    text-align: center;
+}
+
+    #ieTips .tips-content {
+        display: inline-block;
+        line-height: 20px;
+        margin-top: 30px;
+        width: 100%;
+    }
+
+    #ieTips .downDiv {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 70px;
+    }
+
+        #ieTips .downDiv .chromeIcon {
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+            background-image: url(../images/login_images/chrome.png);
+        }
+
+        #ieTips .downDiv a {
+            color: #aaa;
+        }
+
+        #ieTips .downDiv:hover .chromeIcon,
+        #ieTips .downDiv:focus .chromeIcon {
+            background-image: url(../images/login_images/chrome_color.png);
+        }
+
+        #ieTips .downDiv:hover a {
+            color: #488ffa;
+        }
+/*showConfirm使用，抽取bootstrap.min.css里面的样式，直接引用bootstrapCss原来的页面会乱*/
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 3px;
+    -webkit-user-select: none;
+    height: 40px;
+}
+
+.zxjy {
+    background: url(../images/zx_images/back.png) no-repeat;
+    background-size: 100% 100%;
+    min-width: 1280px;
+    min-height: 750px;
+    position: relative;
+}
+
+.zx-login-panel.login-panel {
+    display: inline-block;
+    position: absolute;
+    top: 36%;
+    left: 50%;
+    width: 19%;
+    height: auto;
+    margin-top: 0;
+    border: none;
+}
+
+    .zx-login-panel.login-panel .form .feature {
+        margin: 0px 0 10px 0;
+        color: #7F292F;
+        text-align: left;
+        padding-left: 9%;
+    }
+
+        .zx-login-panel.login-panel .form .feature .checkbox-text {
+            color: #7F292F;
+            margin-left: 0;
+        }
+
+    .zx-login-panel.login-panel .form input.text {
+        width: 91%;
+        -webkit-box-shadow: 0 0 0px 100px #F0D6D0 inset;
+        margin: 5px 0 5px -22px;
+        border-radius: 6px;
+    }
+
+    .zx-login-panel.login-panel .form button {
+        width: 91%;
+        background-color: #6B1F24;
+        border-radius: 6px;
+    }
+
+    .zx-login-panel.login-panel .form {
+        margin-top: 0;
+    }
+
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.zx-login-panel.login-panel .st-input input[type=checkbox] {
+    -webkit-appearance: none;
+    margin-right: 15px;
+}
+
+    .zx-login-panel.login-panel .st-input input[type=checkbox]:checked::after {
+        color: #6B1F24;
+    }
+
+.zx-login-panel.login-panel .form .field-icon {
+    color: #6B1F24;
+    left: 12px;
+    top: 2px;
+}
+
+.zx-login-panel.login-panel .form input.text:focus {
+    background-color: #B54C54
+}
+
+#checkFalse {
+    display: none;
+    position: absolute;
+    top: 270px;
+    left: 50% -220px;
+    ;
+    width: 440px;
+    text-align: center;
+    line-height: 100px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    margin: 0 auto;
+    color: #333333;
+    font-size: 16px;
+    vertical-align: middle;
+}
+
+#checktrue {
+    display: none;
+    position: absolute;
+    top: 270px;
+    left: 50% -220px;
+    width: 440px;
+    text-align: center;
+    line-height: 100px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    margin: 0 auto;
+    color: #333333;
+    font-size: 16px;
+    vertical-align: middle;
+}
+
+#userList {
+    display: none;
+    position: absolute;
+    top: 100px;
+    left: calc(50% - 425px);
+    width: 850px;
+    padding: 70px 100px;
+    color: #fff;
+    text-align: center;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: rgba(255,255,255,0.97);
+    z-index: 1;
+}
+
+    #userList > span {
+        font-size: 26px;
+        color: #5a5a5a;
+        display: block;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 30px;
+    }
+
+    #userList > ul {
+        margin-top: 40px;
+        max-height: 300px;
+        overflow: auto;
+    }
+
+        #userList > ul::-webkit-scrollbar {
+            width: 8px;
+            background-color: #eee;
+            border-radius: 20px;
+        }
+
+        #userList > ul::-webkit-scrollbar-thumb {
+            background-color: #6ED4DC;
+            border-radius: 20px;
+        }
+
+        #userList > ul > li {
+            background-color: #FFFFFF;
+            width: 500px;
+            height: 80px;
+            border-radius: 6px;
+            color: #686868;
+            margin: 0 auto;
+            border: 1px solid #e2e2e2;
+            margin-top: 18px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            cursor: pointer;
+            padding: 18px 50px;
+            text-align: left;
+        }
+
+            #userList > ul > li.current {
+                background-color: #6ED4DC;
+                border-color: #6ED4DC;
+                box-shadow: 0px 1px 3px #ccc;
+                color: #fff;
+            }
+
+    #userList i {
+        font-size: 22px;
+    }
+
+    #userList > ul > li > div {
+        width: 370px;
+        display: inline-block;
+    }
+
+    #userList > ul > li > span {
+        display: none;
+    }
+
+    #userList > ul > li.current > span {
+        display: inline-block;
+        vertical-align: super;
+    }
+
+    #userList > ul > li > div p {
+        padding: 0;
+        margin: 0;
+        text-align: left;
+    }
+
+        #userList > ul > li > div p:first-child {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+#comfirm {
+    text-align: center;
+    line-height: 32px;
+    border-radius: 16px;
+    width: 120px;
+    margin: 60px auto 0;
+    background-color: #6ED4DC;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#userList > ul > .userListBg {
+    background-color: #9DEDF3;
+    color: white
+}
+
+#returnToLogin {
+    width: 220px;
+}
+
+    #returnToLogin a {
+        color: #b8d8ef;
+    }
+
+#safeTips {
+    margin-top: 20px;
+}
+
+    #safeTips i {
+        margin-right: 5px;
+        background: url(../images/login_images/safe_ico.png) no-repeat;
+        width: 13px;
+        height: 15px;
+        background-size: 13px 15px;
+        display: inline-block;
+        vertical-align: bottom;
+    }
+
+#section-form input:-webkit-autofill {
+    /* Change the color to your own background color */
+    -webkit-box-shadow: 0 0 0 50px #fff inset;
+    -webkit-text-fill-color: #565656;
+    background: #fff !important;
+}
+
+    #section-form input:-webkit-autofill:focus {
+        -webkit-box-shadow: 0 0 0 50px #fff inset;
+        -webkit-text-fill-color: #565656;
+        background: #fff !important;
+    }
+
+/* 金材教育登录页定制 #11401 */
+.isJinCai #MsgBoxBack {
+    filter: hue-rotate(175deg);
+}
+
+
+#thirdPartyLoginSection {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+    #thirdPartyLoginSection .line-tip {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+        #thirdPartyLoginSection .line-tip label:not(.text) {
+            flex: 1;
+            border-bottom: 1px solid #eee;
+            margin: 0 10px;
+        }
+
+    #thirdPartyLoginSection .thirdPartyItemSection {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 0;
+    }
+
+        #thirdPartyLoginSection .thirdPartyItemSection .thirdItem {
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            margin: 10px;
+        }
+
+            #thirdPartyLoginSection .thirdPartyItemSection .thirdItem .itemImgDiv {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 25px;
+                height: 25px;
+                margin-bottom: 5px;
+            }
+
+                #thirdPartyLoginSection .thirdPartyItemSection .thirdItem .itemImgDiv img {
+                    width: 100%;
+                    height: 100%;
+                }
+
+            #thirdPartyLoginSection .thirdPartyItemSection .thirdItem .itemText {
+                text-align: center;
+                margin-bottom: 0;
+            }
